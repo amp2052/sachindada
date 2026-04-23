@@ -76,7 +76,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "projectt.urls"
-
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
+}
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
