@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}My Portfolio{% endblock %}</title>
+
+<!-- Favicon -->
+<link rel="icon" href="{% static 'images/rathod.png' %}" type="image/png" sizes="32x32">
+<link rel="shortcut icon" href="{% static 'images/rathod.png' %}" type="image/png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/css.css' %}">
+
+
+<!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+    .header {
+      position: sticky;       /* makes header sticky */
+      top: 0;                 /* stick to top */
+      height: 100px;          /* fixed height */
+      display: flex;          /* center content vertically */
+      align-items: center;
+      justify-content: center; /* center content horizontally */
+      text-align: center;
+      background: url("{% static 'app/images/image.jpg' %}") center/cover no-repeat;
+      color: white;
+      z-index: 1000;          /* keep on top of other content */
+    }
+    .navbar-dark .navbar-toggler {
+      border-color: transparent;
+    }
+
+    /* Offcanvas menu (left side) */
+    .offcanvas-start {
+      width: 250px !important;
+    }
+/* Floating button */
+#chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Chatbot widget */
+#chatbot-widget {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    max-height: 500px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Header */
+#chatbot-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Body */
+#chatbot-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 400px;
+}
+
+#chatbox {
+    flex: 1;
+    overflow-y: auto;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    margin-bottom: 5px;
+}
+
+.message { margin: 5px 0; padding: 5px 10px; border-radius: 15px; max-width: 80%; word-wrap: break-word; }
+.user { background: #cce5ff; align-self: flex-end; text-align: right; }
+.bot { background: #d4edda; align-self: flex-start; text-align: left; }
+
+#input-group { display: flex; gap: 5px; }
+#user_input { flex: 1; padding: 5px; border-radius: 5px; border: 1px solid #ccc; }
+#send_btn { padding: 5px 10px; border: none; background: #007bff; color: white; border-radius: 5px; cursor: pointer; }
+#chatbot-close { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
+
+  </style>
+  
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="bg-dark shadow-sm header">
+    <div class="container-fluid">
+      <div class="row align-items-center py-2">
+
+        <!-- Column 1: Name/Logo -->
+        <div class="col-3 text-start">
+          <img src="{% static 'images/mr-sanjay-rathod.jpg' %}" alt="" style="width: 60px;height: 60px; border-radius: 50%; object-fit: cover;">
+          <a class="navbar-brand text-white fw-bold fs-5" href="{% url 'home' %}">
+            SANJAY RATHOD
+          </a>
+        </div>
+
+        <!-- Column 2: Menu -->
+        <div class="col-6">
+          <nav class="navbar navbar-expand-lg navbar-dark p-0">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+              <ul class="navbar-nav" style="list-style: none;">
+                <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About Him</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'news' %}active{% endif %}" href="{% url 'news' %}">News & Events</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'stock' %}active{% endif %}" href="{% url 'stock' %}">Stock Images</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'press' %}active{% endif %}" href="{% url 'press' %}">Scholarship</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact Us</a>
+                </li>
+
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Column 3: Join Button / Image -->
+        <div class="col-3 text-end">
+          <a href="{% url 'join' %}" id="joinButton" class="btn btn-danger fw-bold" style="background-color: #f2570a;">Join Sanjay Bhau</a>
+          <a href="https://shivsenacentraloffice.com/main.asp?page=join-us" class="btn btn-danger fw-bold" style="background-color: #f2570a;">Join Shivsena</a>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+<script>
+  const button = document.getElementById('joinButton');
+  const texts = ["Join Sanjay Bhau", "संजय भाऊ सोबत जुळा"]; // English & Marathi
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % texts.length; // Toggle between 0 and 1
+    button.textContent = texts[index];
+  }, 3000); // Change text every 3000ms = 3 seconds
+</script>
+
+
+  <!-- Page Content -->
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="nav flex-column" style="list-style: none; padding-left: 0;">
+            <li class="nav-item ">
+              <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" style="color:#d8dce3;" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" style="color:#d8dce3;" href="{% url 'about' %}">About Him</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if request.resolver_match.url_name == 'news' %}active{% endif %}" style="color:#d8dce3;" href="{% url 'news' %}">News & Events</a>
+            </li>
+            <li class="nav-item mb-2">
+              <a class="nav-link {% if request.resolver_match.url_name == 'stock' %}active{% endif %}" style="color:#d8dce3;" href="{% url 'stock' %}">Stock Images</a>
+            </li>
+            <li class="nav-item mb-2">
+              <a class="nav-link {% if request.resolver_match.url_name == 'press' %}active{% endif %}" style="color:#d8dce3;" href="{% url 'press' %}">Press Room</a>
+            </li>
+            <li class="nav-item mb-2" >
+              <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" style="color:#d8dce3;" href="{% url 'contact' %}">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h4>Social Media links</h4>
+          <div class="flex-column"style="display: flex; justify-content: center; align-items: center;">
+            <a href="https://www.facebook.com" target="_blank" style="color:#3b5998; font-size: 30px; text-decoration: none; cursor: pointer;">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          
+            <!-- Twitter -->
+            <a href="https://twitter.com" target="_blank" style="color:#1DA1F2; font-size: 30px; text-decoration: none; cursor: pointer;">
+              <i class="fab fa-twitter"></i>
+            </a>
+          
+            <!-- YouTube -->
+            <a href="https://www.youtube.com" target="_blank" style="color:#FF0000; font-size: 30px; text-decoration: none; cursor: pointer;">
+              <i class="fab fa-youtube"></i>
+            </a>
+          
+            <!-- Wikipedia -->
+            <a href="https://www.wikipedia.org" target="_blank" style="color:#000000; font-size: 30px; text-decoration: none; cursor: pointer;">
+              <i class="fab fa-wikipedia-w"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h4>Location</h4>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d943.3805908430242!2d72.7983555491367!3d18.9525244092932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cde339088699%3A0xb09949157e8a80bc!2sShivneri%20Bunglow!5e0!3m2!1sen!2sin!4v1758994551786!5m2!1sen!2sin" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        </div>
+      </div>
+    </div>
+    <h6 class="mb-1">&copy; {{ 2025}} Sanjay Rathod. All Rights Reserved.</h6>
+    <p>
+      <a href="{% url 'privacy_policy' %}" class="text-decoration-none text-warning">Privacy Policy</a> |
+      <a href="{% url 'disclaimer' %}" class="text-decoration-none text-warning">Disclaimer</a>
+    </p>
+  </footer>
+<!-- WhatsApp Button (above chatbot) -->
+<a href="https://wa.me/9199605074" target="_blank" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Your existing chatbot button stays below -->
+<style>
+  .whatsapp-float {
+  position: fixed;
+  bottom: 90px;   /* Place above chatbot (adjust if needed) */
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #25D366; /* WhatsApp Green */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease-in-out;
+  z-index: 9999;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+</style>
+  <!-- Floating Chatbot Button -->
+<div id="chatbot-widget">
+    <div id="chatbot-header">
+        <span>Chat with AI</span>
+        <button id="chatbot-close">&times;</button>
+    </div>
+    <div id="chatbot-body">
+        <div id="chatbox"></div>
+        <div id="input-group">
+            <input type="text" id="user_input" placeholder="Type your message...">
+            <button id="send_btn">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Chatbot Toggle Button -->
+<button id="chatbot-toggle">💬</button>
+
+  <script>
+const toggleBtn = document.getElementById("chatbot-toggle");
+const chatbot = document.getElementById("chatbot-widget");
+const closeBtn = document.getElementById("chatbot-close");
+const chatbox = document.getElementById("chatbox");
+const input = document.getElementById("user_input");
+const sendBtn = document.getElementById("send_btn");
+
+// Toggle widget
+toggleBtn.onclick = () => { chatbot.style.display = "flex"; toggleBtn.style.display = "none"; };
+closeBtn.onclick = () => { chatbot.style.display = "none"; toggleBtn.style.display = "block"; };
+
+// Append message
+function appendMessage(message, sender) {
+    const div = document.createElement("div");
+    div.classList.add("message", sender);
+    div.innerHTML = message;
+    chatbox.appendChild(div);
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+// Send message
+sendBtn.onclick = async () => {
+    const message = input.value.trim();
+    if (!message) return;
+    appendMessage(`<b>You:</b> ${message}`, "user");
+    input.value = "";
+
+    try {
+        const response = await fetch("{% url 'chatbot' %}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "message=" + encodeURIComponent(message)
+        });
+
+        const data = await response.json();
+        if(data.message) appendMessage(`<b>Bot:</b> ${data.message}`, "bot");
+        else if(data.error) appendMessage(`<b>Bot Error:</b> ${data.error}`, "bot");
+    } catch(err) {
+        appendMessage(`<b>Bot Error:</b> ${err}`, "bot");
+    }
+};
+
+// Enter key
+input.addEventListener("keydown", function(event){
+    if(event.key === "Enter") sendBtn.click();
+});
+</script>
+
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

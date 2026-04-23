@@ -1,0 +1,288 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Latest News{% endblock %}
+
+{% block content %}
+
+<!-- ================= NEWS HEADER ================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="text-center mb-4">
+      <h1 class="fw-bold" style="color:#f37021;">Latest News</h1>
+      <p class="text-muted">
+        Stay informed about recent developments, initiatives, and updates from our constituency
+      </p>
+    </div>
+
+    <!-- SEARCH + FILTER -->
+    <div class="row mb-5">
+
+      <div class="col-md-10 mb-3">
+        <input type="text" class="form-control news-search" placeholder="Search news...">
+      </div>
+
+      <div class="col-md-2">
+        <select class="form-select news-filter">
+          <option>All Categories</option>
+          <option>Education</option>
+          <option>Healthcare</option>
+          <option>Infrastructure</option>
+          <option>Agriculture</option>
+          <option>Social Welfare</option>
+          <option>Sports</option>
+          <option>Environment</option>
+          <option>Economy</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- ================= NEWS CARDS ================= -->
+    <div class="row g-4">
+
+      <!-- CARD TEMPLATE START -->
+
+      <!-- 1 -->
+      <div class="col-md-4" data-category="education">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news1.jpg' %}" class="news-img">
+            <span class="category-badge">Education</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> April 12, 2026</small>
+            <h5 class="fw-bold mt-2">New education grant announced for underprivileged students</h5>
+            <p class="text-muted">Initiative will benefit over 2,400 students across the constituency</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="col-md-4" data-category="healthcare">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news2.jpg' %}" class="news-img">
+            <span class="category-badge">Healthcare</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> April 10, 2026</small>
+            <h5 class="fw-bold mt-2">Healthcare camp organized in rural areas</h5>
+            <p class="text-muted">Free medical checkups and medicines provided to 1,800 residents</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="col-md-4" data-category="infrastructure">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news3.jpg' %}" class="news-img">
+            <span class="category-badge">Infrastructure</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> April 8, 2026</small>
+            <h5 class="fw-bold mt-2">Infrastructure development projects inaugurated</h5>
+            <p class="text-muted">Three major road projects and two public parks opened</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="col-md-4" data-category="agriculture">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news4.jpg' %}" class="news-img">
+            <span class="category-badge">Agriculture</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> April 5, 2026</small>
+            <h5 class="fw-bold mt-2">Agricultural training program launched</h5>
+            <p class="text-muted">Modern farming techniques introduced to boost crop yields</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="col-md-4" data-category="social welfare">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news5.jpg' %}" class="news-img">
+            <span class="category-badge">Social Welfare</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> April 3, 2026</small>
+            <h5 class="fw-bold mt-2">Women empowerment initiative gains momentum</h5>
+            <p class="text-muted">Skill development workshops conducted for 900+ women</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="col-md-4" data-category="education">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news6.jpg' %}" class="news-img">
+            <span class="category-badge">Education</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> March 30, 2026</small>
+            <h5 class="fw-bold mt-2">Digital literacy centers established</h5>
+            <p class="text-muted">New computer training facilities in remote villages</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="col-md-4" data-category="sports">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news7.jpg' %}" class="news-img">
+            <span class="category-badge">Sports</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> March 28, 2026</small>
+            <h5 class="fw-bold mt-2">Sports complex construction begins</h5>
+            <p class="text-muted">World-class training facility for young athletes</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="col-md-4" data-category="environment">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news8.jpg' %}" class="news-img">
+            <span class="category-badge">Environment</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> March 25, 2026</small>
+            <h5 class="fw-bold mt-2">Environmental conservation drive</h5>
+            <p class="text-muted">18,000 trees planted to increase green cover</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="col-md-4" data-category="economy">
+        <div class="news-card">
+          <div class="news-img-wrapper">
+            <img src="{% static 'images/news9.jpg' %}" class="news-img">
+            <span class="category-badge">Economy</span>
+          </div>
+
+          <div class="news-content">
+            <small class="text-muted"><i class="bi bi-calendar"></i> March 22, 2026</small>
+            <h5 class="fw-bold mt-2">New industrial park to create jobs</h5>
+            <p class="text-muted">3,200 jobs expected from new manufacturing investment</p>
+            <a href="#" class="read-more">Read more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= STYLES ================= -->
+<style>
+
+.news-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.news-img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* IMAGE WRAPPER */
+.news-img-wrapper {
+  position: relative;
+}
+
+/* CATEGORY BADGE */
+.category-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #f37021;
+  color: white;
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.news-content {
+  padding: 20px;
+}
+
+.read-more {
+  text-decoration: none;
+  color: #f37021;
+  font-weight: 600;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.news-search,
+.news-filter {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+</style>
+
+<!-- ================= FILTER SCRIPT ================= -->
+<script>
+const filter = document.querySelector(".news-filter");
+const cards = document.querySelectorAll("[data-category]");
+
+filter.addEventListener("change", function () {
+  const value = this.value.toLowerCase();
+
+  cards.forEach(card => {
+    const category = card.getAttribute("data-category");
+
+    if (value === "all categories" || category === value) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2026-03-03 17:02+0530\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: .\app\templates\app\base.html:123
+msgid "Home"
+msgstr "मुख्यपृष्ठ"
+
+#: .\app\templates\app\base.html:124
+msgid "About"
+msgstr "माहिती"
+
+#: .\app\templates\app\base.html:125
+msgid "Gallery"
+msgstr "छायाचित्रे"
+
+#: .\app\templates\app\base.html:126
+msgid "Contact"
+msgstr "संपर्क"
+
+#: .\app\templates\app\base.html:140
+msgid "Join Campaign"
+msgstr "अभियानात सहभागी व्हा"
+
+#: .\app\templates\app\home.html:12
+msgid "Committed to Progress. Dedicated to People."
+msgstr "प्रगतीसाठी कटिबद्ध. जनतेसाठी समर्पित."
+
+#: .\app\templates\app\home.html:13
+msgid "Serving Akkalkot Vidhansabha Constituency with transparency and development."
+msgstr "अक्कलकोट विधानसभा मतदारसंघाची पारदर्शकता आणि विकासासह सेवा."
+
+#: .\app\templates\app\home.html:24
+msgid "Development Projects"
+msgstr "विकास प्रकल्प"
+
+#: .\app\templates\app\home.html:29
+msgid "Beneficiary Families"
+msgstr "लाभार्थी कुटुंबे"
+
+#: .\app\templates\app\home.html:34
+msgid "Public Meetings"
+msgstr "जनसभा"
+
+#: .\app\templates\app\home.html:39
+#, python-format
+msgid "Commitment %%"
+msgstr "वचनबद्धता %%"

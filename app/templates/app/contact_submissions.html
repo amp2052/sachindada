@@ -1,0 +1,109 @@
+{% extends "app/base.html" %}
+{% block content %}
+<div class="container my-5">
+  <!-- Contact Submissions Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light rounded shadow mb-4">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">
+        📩 Contact Submissions 
+        <span class="badge bg-primary">{{ total_count }}</span>
+        <span class="badge bg-danger">{{ unread_count }} Unread</span>
+      </span>
+      <div class="d-flex">
+        <a href="{% url 'home' %}" class="btn btn-outline-danger mx-2">Home</a>
+        <a href="{% url 'admin_logout' %}" class="btn btn-outline-danger">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Submissions Table -->
+  <table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for msg in messages %}
+      <tr class="{% if not msg.is_read %}table-warning fw-bold{% endif %}">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ msg.name }}</td>
+        <td>{{ msg.email }}</td>
+        <td>{{ msg.mobile_no }}</td>
+        <td>{{ msg.address }}</td>
+        <td>{{ msg.message }}</td>
+        <td>{{ msg.created_at|date:"d M Y H:i" }}</td>
+        <td>
+          <a href="{% url 'delete_contact_message' msg.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a>
+          {% if not msg.is_read %}
+          <a href="{% url 'mark_as_read' msg.id %}" class="btn btn-success btn-sm">Mark as Read</a>
+          {% else %}
+          <span class="badge bg-secondary">Read</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8" class="text-center">No messages yet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="mb-5 text-end">
+    <a href="{% url 'download_contact_pdf' %}" class="btn btn-success">📥 Download PDF</a>
+  </div>
+
+  <!-- ================== Team Members Section ================== -->
+  <h3 class="mt-5 mb-3">👥 Team Members ({{ team_total_count }})</h3>
+
+  <table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Message</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for member in team_members %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ member.name }}</td>
+        <td>{{ member.email }}</td>
+        <td>{{ member.mobile_no }}</td>
+        <td>{{ member.address }}</td>
+        <td>{{ member.message }}</td>
+        <td>{{ member.created_at|date:"d M Y H:i" }}</td>
+        <td>
+          {% if not member.is_reviewed %}
+            <a href="{% url 'mark_team_member_reviewed' member.id %}" class="btn btn-success btn-sm">Mark as Reviewed</a>
+          {% else %}
+            <a href="{% url 'mark_team_member_unreviewed' member.id %}" class="btn btn-warning btn-sm">Mark as Unreviewed</a>
+          {% endif %}
+          <a href="{% url 'delete_team_member' member.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8" class="text-center">No team members yet.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="mb-3 text-end">
+    <a href="{% url 'download_team_members_pdf' %}" class="btn btn-success">📥 Download Team Members PDF</a>
+  </div>
+</div>
+{% endblock %}

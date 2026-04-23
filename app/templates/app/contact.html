@@ -1,27 +1,223 @@
-{% extends 'app/base.html' %}
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Contact - Sachin Kalyanshetti{% endblock %}
+
 {% block content %}
-<h2>Contact Me</h2>
 
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-success">{{ message }}</div>
-  {% endfor %}
-{% endif %}
+<!-- ================= HEADER ================= -->
+<section class="contact-header text-center">
+  <div class="container">
+    <h1 class="fw-bold">Contact Office</h1>
+    <p class="text-muted">
+      We welcome your suggestions, concerns, and development proposals from across Akkalkot constituency
+    </p>
+  </div>
+</section>
 
-<form method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" name="name" class="form-control" required>
+
+<!-- ================= MAIN ================= -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="row g-5 align-items-start">
+
+      <!-- ================= FORM ================= -->
+      <div class="col-md-6">
+        <div class="contact-card">
+
+          <h4 class="fw-bold mb-2">Send Your Message</h4>
+          <p class="text-muted mb-4">
+            Fill out the form and we will get back to you
+          </p>
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+
+          <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="name" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email Address</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="text" name="phone" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Subject</label>
+              <input type="text" name="subject" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Grievance Type</label>
+              <select name="grievance_type" class="form-select" required>
+                <option value="">Select Category</option>
+                <option>Infrastructure Issues</option>
+                <option>Healthcare Services</option>
+                <option>Education and Schools</option>
+                <option>Water Supply</option>
+                <option>Electricity</option>
+                <option>Sanitation</option>
+                <option>Public Transport</option>
+                <option>Law and Order</option>
+                <option>Land and Property</option>
+                <option>Social Welfare Schemes</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Your Message</label>
+              <textarea name="message" rows="4" class="form-control"
+                placeholder="Please provide details about your concern"></textarea>
+            </div>
+
+            <button type="submit" class="btn submit-btn w-100 mt-2">
+              Submit Message
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+
+
+      <!-- ================= RIGHT SIDE ================= -->
+      <div class="col-md-6">
+
+        <div class="row g-4">
+
+          <div class="col-md-6">
+            <div class="info-card">
+              <i class="bi bi-geo-alt-fill"></i>
+              <h6>Office Address</h6>
+              <p>MLA Office,<br>Akkalkot, Solapur,<br>Maharashtra – 413216</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-card">
+              <i class="bi bi-telephone-fill"></i>
+              <h6>Phone</h6>
+              <p>+91-XXXXXXXXXX</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-card">
+              <i class="bi bi-envelope-fill"></i>
+              <h6>Email</h6>
+              <p>office@akkalkotmla.in</p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="info-card">
+              <i class="bi bi-clock-fill"></i>
+              <h6>Office Hours</h6>
+              <p>Mon–Sat: 10 AM – 6 PM</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- MAP -->
+        <div class="map-box mt-4">
+          <iframe 
+            src="https://www.google.com/maps?q=Akkalkot,+Maharashtra&output=embed"
+            width="100%" 
+            height="280"
+            style="border:0;"
+            loading="lazy">
+          </iframe>
+        </div>
+
+      </div>
+
     </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" class="form-control" required>
-    </div>
-    <div class="mb-3">
-        <label for="message" class="form-label">Message</label>
-        <textarea name="message" class="form-control" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-dark">Send</button>
-</form>
+
+  </div>
+</section>
+
+
+<!-- ================= STYLES ================= -->
+<style>
+
+/* HEADER */
+.contact-header{
+  background:linear-gradient(to right,#fff8f2,#ffffff);
+  padding:60px 0;
+}
+
+/* CARD */
+.contact-card{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* INPUT FOCUS */
+.form-control:focus,
+.form-select:focus{
+  border-color:#f37021;
+  box-shadow:0 0 0 0.2rem rgba(243,112,33,0.2);
+}
+
+/* BUTTON */
+.submit-btn{
+  background:linear-gradient(135deg,#ff9933,#f37021);
+  color:white;
+  border:none;
+  padding:12px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.submit-btn:hover{
+  transform:translateY(-2px);
+  opacity:0.9;
+}
+
+/* INFO CARDS */
+.info-card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.info-card i{
+  font-size:28px;
+  color:#f37021;
+  margin-bottom:10px;
+}
+
+.info-card:hover{
+  transform:translateY(-6px);
+}
+
+/* MAP */
+.map-box{
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+</style>
+
 {% endblock %}

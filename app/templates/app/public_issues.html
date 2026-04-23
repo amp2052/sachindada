@@ -1,0 +1,280 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Public Issues & Feedback{% endblock %}
+
+{% block content %}
+
+<style>
+:root{
+  --lotus:#f37021;
+  --dark:#1f2a33;
+}
+
+/* HERO */
+.issue-hero{
+  background:linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
+  url("{% static 'images/s8.jpg' %}") center/cover;
+  color:white;
+  padding:80px 0;
+  text-align:center;
+}
+
+/* LAYOUT */
+.survey-wrapper{
+  display:flex;
+  gap:25px;
+  margin-top:30px;
+  align-items:flex-start; /* ✅ IMPORTANT FIX */
+}
+
+.left-card{
+  flex:1;
+  align-self:flex-start; /* ✅ prevents stretching */
+}
+
+.right-card{
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+
+.right-card{ flex:2; }
+
+/* FORM */
+label{
+  font-weight:600;
+  margin-top:12px;
+}
+
+/* INPUT STYLING */
+input, select, textarea{
+  margin-top:5px;
+  margin-bottom:10px;
+  border-radius:8px;
+  padding:10px;
+  border:1px solid #ddd;
+}
+
+/* ORANGE FOCUS */
+input:focus, select:focus, textarea:focus{
+  border-color:var(--lotus);
+  box-shadow:0 0 0 2px rgba(243,112,33,0.2);
+  outline:none;
+}
+
+/* RADIO BUTTON ORANGE */
+.form-check input[type="radio"]{
+  accent-color: var(--lotus);
+  margin-right:8px;
+}
+
+/* DROPDOWN HOVER */
+select:hover{
+  border-color:var(--lotus);
+}
+
+/* BUTTON */
+.btn-success{
+  background:linear-gradient(135deg,#ff9933,#f37021);
+  border:none;
+}
+
+.btn-success:hover{
+  opacity:0.9;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .survey-wrapper{
+    flex-direction:column;
+  }
+}
+</style>
+
+<!-- HERO -->
+<section class="issue-hero">
+  <div class="container">
+    <h1 class="fw-bold">Public Issues & Development Survey</h1>
+    <p>Help improve your constituency by sharing real ground issues</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<section class="container py-5">
+<div class="survey-wrapper">
+
+<!-- LEFT -->
+<div class="left-card">
+<h3>📢 Why this survey matters</h3>
+
+<p>Your voice is crucial in shaping development priorities of your area.</p>
+<p>This survey helps identify real issues like roads, water, employment, healthcare, and education.</p>
+<p>Your responses support policy decisions and planning.</p>
+<p>All data is confidential and used only for development purposes.</p>
+<p>Together, we can build a better future for our constituency.</p>
+
+</div>
+
+<!-- RIGHT FORM -->
+<div class="right-card">
+
+<form method="POST">
+{% csrf_token %}
+
+<h3>📝 Survey Form</h3>
+
+<h5>👤 Personal Information</h5>
+
+<label>Full Name *</label>
+<input type="text" name="name" class="form-control" placeholder="Enter your full name" required>
+
+<label>Area / Village / City *</label>
+<input type="text" name="area" class="form-control" placeholder="Enter your area" required>
+
+<label>Address *</label>
+<textarea name="address" class="form-control" placeholder="Enter your full address"></textarea>
+
+<label>Phone Number *</label>
+<input type="tel" name="phone" class="form-control" placeholder="Enter phone number" required>
+
+<hr>
+
+<h5>📊 Survey Questions</h5>
+
+<!-- Q1 DROPDOWN -->
+<label>1. What is the biggest issue in your area?</label>
+<select name="main_issue" class="form-control">
+<option selected disabled>Select an option</option>
+<option>Roads & Infrastructure</option>
+<option>Water Supply</option>
+<option>Employment</option>
+<option>Electricity</option>
+<option>Healthcare</option>
+<option>Education</option>
+<option>Sanitation</option>
+<option>Public Transport</option>
+<option>Safety & Security</option>
+<option>Agriculture Issues</option>
+<option>Other</option>
+</select>
+
+<!-- Q2 -->
+<label>2. How severe is this issue?</label>
+<div class="form-check"><input type="radio" name="severity" value="Low"> Low</div>
+<div class="form-check"><input type="radio" name="severity" value="Medium"> Medium</div>
+<div class="form-check"><input type="radio" name="severity" value="High"> High</div>
+<div class="form-check"><input type="radio" name="severity" value="Very Critical"> Very Critical</div>
+
+<!-- Q3 -->
+<label>3. Duration of issue</label>
+<div class="form-check"><input type="radio" name="duration" value="Less than 1 year"> Less than 1 year</div>
+<div class="form-check"><input type="radio" name="duration" value="1-3 years"> 1 to 3 years</div>
+<div class="form-check"><input type="radio" name="duration" value="3-5 years"> 3 to 5 years</div>
+<div class="form-check"><input type="radio" name="duration" value="5+ years"> More than 5 years</div>
+
+<!-- Q4 -->
+<label>4. People affected</label>
+<div class="form-check"><input type="radio" name="impact" value="Few"> Few people</div>
+<div class="form-check"><input type="radio" name="impact" value="Some"> Some households</div>
+<div class="form-check"><input type="radio" name="impact" value="Many"> Many households</div>
+<div class="form-check"><input type="radio" name="impact" value="All"> Entire area</div>
+
+<!-- Q5 DROPDOWN -->
+<label>5. Priority development area</label>
+<select name="priority" class="form-control">
+<option selected disabled>Select an option</option>
+<option>Roads & Infrastructure</option>
+<option>Jobs & Skill Development</option>
+<option>Water & Sanitation</option>
+<option>Education</option>
+<option>Healthcare</option>
+<option>Electricity</option>
+<option>Public Transport</option>
+<option>Agriculture Support</option>
+<option>Digital Access</option>
+<option>Other</option>
+</select>
+
+<!-- Q6 -->
+<label>6. Govt schemes</label>
+<div class="form-check"><input type="radio" name="scheme" value="Yes"> Yes fully</div>
+<div class="form-check"><input type="radio" name="scheme" value="Partial"> Partially</div>
+<div class="form-check"><input type="radio" name="scheme" value="No"> No</div>
+<div class="form-check"><input type="radio" name="scheme" value="Not aware"> Not aware</div>
+
+<!-- Q7 -->
+<label>7. Reported issue</label>
+<div class="form-check"><input type="radio" name="reported" value="Yes"> Yes</div>
+<div class="form-check"><input type="radio" name="reported" value="No"> No</div>
+
+<!-- Q8 -->
+<label>8. Roads condition</label>
+<div class="form-check"><input type="radio" name="roads" value="Good"> Good</div>
+<div class="form-check"><input type="radio" name="roads" value="Average"> Average</div>
+<div class="form-check"><input type="radio" name="roads" value="Poor"> Poor</div>
+<div class="form-check"><input type="radio" name="roads" value="Very Poor"> Very Poor</div>
+
+<!-- Q9 -->
+<label>9. Water availability</label>
+<div class="form-check"><input type="radio" name="water" value="Daily"> Daily</div>
+<div class="form-check"><input type="radio" name="water" value="Sometimes"> Sometimes</div>
+<div class="form-check"><input type="radio" name="water" value="Rarely"> Rarely</div>
+<div class="form-check"><input type="radio" name="water" value="None"> Not available</div>
+
+<!-- Q10 -->
+<label>10. Employment</label>
+<div class="form-check"><input type="radio" name="jobs" value="Good"> Good</div>
+<div class="form-check"><input type="radio" name="jobs" value="Average"> Average</div>
+<div class="form-check"><input type="radio" name="jobs" value="Poor"> Poor</div>
+<div class="form-check"><input type="radio" name="jobs" value="Very Poor"> Very Poor</div>
+<div class="form-check"><input type="radio" name="jobs" value="None"> No opportunities</div>
+
+<!-- Q11 DROPDOWN -->
+<label>11. Service improvement</label>
+<select name="service" class="form-control">
+<option selected disabled>Select an option</option>
+<option>Healthcare</option>
+<option>Education</option>
+<option>Water Supply</option>
+<option>Electricity</option>
+<option>Roads</option>
+<option>Public Transport</option>
+<option>Ration</option>
+<option>Pension</option>
+<option>Digital Services</option>
+<option>Other</option>
+</select>
+
+<!-- Q12 -->
+<label>12. Governance satisfaction</label>
+<div class="form-check"><input type="radio" name="satisfaction" value="Very satisfied"> Very satisfied</div>
+<div class="form-check"><input type="radio" name="satisfaction" value="Satisfied"> Satisfied</div>
+<div class="form-check"><input type="radio" name="satisfaction" value="Neutral"> Neutral</div>
+<div class="form-check"><input type="radio" name="satisfaction" value="Unsatisfied"> Unsatisfied</div>
+<div class="form-check"><input type="radio" name="satisfaction" value="Very unsatisfied"> Very unsatisfied</div>
+
+<!-- Q13 -->
+<label>13. Area type</label>
+<div class="form-check"><input type="radio" name="area_type" value="Rural"> Rural</div>
+<div class="form-check"><input type="radio" name="area_type" value="Town"> Semi-Urban</div>
+<div class="form-check"><input type="radio" name="area_type" value="City"> Urban</div>
+
+<!-- Q14 -->
+<label>14. Suggestion</label>
+<textarea name="suggestion" class="form-control" placeholder="Your suggestion"></textarea>
+
+<br>
+
+<button type="submit" class="btn btn-success w-100">Submit Survey</button>
+
+</form>
+
+</div>
+
+</div>
+</section>
+
+{% endblock %}

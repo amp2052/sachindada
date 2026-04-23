@@ -1,0 +1,172 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="hero-section d-flex align-items-center justify-content-center text-white"
+ style="height:60vh;background:url('{% static "images/s8.jpg" %}') center/cover;">
+  <div class="text-center bg-dark bg-opacity-50 p-4 rounded">
+    <h1 class="fw-bold text-warning">Sachin Sir Gallery</h1>
+    <p class="lead">Journey, service & people</p>
+  </div>
+</section>
+
+<!-- ================= FILTER BUTTONS ================= -->
+<section class="py-4 bg-light">
+  <div class="container text-center">
+
+    <button class="btn btn-outline-warning m-1 filter-btn active" data-filter="all">All</button>
+    <button class="btn btn-outline-warning m-1 filter-btn" data-filter="events">Events</button>
+    <button class="btn btn-outline-warning m-1 filter-btn" data-filter="public">Public</button>
+    <button class="btn btn-outline-warning m-1 filter-btn" data-filter="meetings">Meetings</button>
+
+  </div>
+</section>
+
+<!-- ================= GALLERY GRID ================= -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="row g-4" id="galleryContainer">
+
+      <!-- IMAGE ITEM -->
+      {% for i in "12345678" %}
+      <div class="col-md-3 col-sm-6 gallery-item" data-category="events">
+
+        <div class="card gallery-card border-0 shadow-sm">
+
+          <div class="position-relative">
+
+            <img src="{% static 'images/g'|add:i|add:'.jpg' %}" 
+                 class="card-img-top gallery-img">
+
+            <!-- Overlay -->
+            <div class="overlay">
+              <button class="btn btn-light btn-sm view-btn">View</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      {% endfor %}
+
+      <!-- Hidden Images -->
+      {% for i in "910111213141516" %}
+      <div class="col-md-3 col-sm-6 gallery-item extra d-none" data-category="public">
+
+        <div class="card gallery-card border-0 shadow-sm">
+          <img src="{% static 'images/g'|add:i|add:'.jpg' %}" class="card-img-top gallery-img">
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <!-- LOAD MORE -->
+    <div class="text-center mt-5">
+      <button id="loadMoreBtn" class="btn btn-warning px-4">Load More</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= MODAL (LIGHTBOX) ================= -->
+<div class="modal fade" id="imageModal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark">
+      <img id="modalImage" class="w-100 rounded">
+    </div>
+  </div>
+</div>
+
+<!-- ================= STYLES ================= -->
+<style>
+.gallery-card {
+  overflow: hidden;
+  transition: 0.3s;
+}
+.gallery-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.gallery-img {
+  height: 230px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.gallery-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Filter active */
+.filter-btn.active {
+  background: #f37021;
+  color: white;
+}
+</style>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+
+// 🔍 FILTER
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", function () {
+
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    this.classList.add("active");
+
+    let filter = this.dataset.filter;
+
+    document.querySelectorAll(".gallery-item").forEach(item => {
+      if (filter === "all" || item.dataset.category === filter) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+  });
+});
+
+
+// 🔥 LOAD MORE
+document.getElementById("loadMoreBtn").addEventListener("click", () => {
+  document.querySelectorAll(".extra").forEach(el => el.classList.remove("d-none"));
+  document.getElementById("loadMoreBtn").style.display = "none";
+});
+
+
+// 🖼️ IMAGE MODAL (LIGHTBOX)
+const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+const modalImg = document.getElementById("modalImage");
+
+document.querySelectorAll(".gallery-img").forEach(img => {
+  img.addEventListener("click", () => {
+    modalImg.src = img.src;
+    modal.show();
+  });
+});
+
+</script>
+
+{% endblock %}

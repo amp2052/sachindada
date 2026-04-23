@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Submissions</title>
+  <style>
+    body { font-family: Arial, sans-serif; font-size: 12px; }
+    header { text-align: center; margin-bottom: 20px; }
+    header img { max-height: 60px; }
+    h2 { margin-bottom: 10px; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #000; padding: 5px; }
+    th { background-color: #eee; }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: right;
+      font-size: 10px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="{{ logo_path }}" alt="Site Logo">
+    <h2>Contact Submissions</h2>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Message</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for msg in messages %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ msg.name }}</td>
+        <td>{{ msg.email }}</td>
+        <td>{{ msg.mobile_no }}</td>
+        <td>{{ msg.address }}</td>
+        <td>{{ msg.message }}</td>
+        <td>{{ msg.created_at|date:"d M Y H:i" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <footer>
+    Page {{ page }} of {{ pages }}
+  </footer>
+</body>
+</html>

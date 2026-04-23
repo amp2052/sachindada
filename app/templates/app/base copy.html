@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}My Portfolio{% endblock %}</title>
+
+  <link rel="icon" href="{% static 'images/rathod.png' %}" type="image/png" sizes="32x32">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/css.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+    .header {
+      position: sticky;
+      top: 0;
+      background: url("{% static 'app/images/image.jpg' %}") center/cover no-repeat;
+      color: white;
+      z-index: 1000;
+    }
+
+    /* Navbar adjustments */
+    .navbar-dark .navbar-toggler {
+      border-color: transparent;
+    }
+
+    /* Offcanvas menu (left side) */
+    .offcanvas-start {
+      width: 250px !important;
+    }
+
+    /* Floating Chatbot */
+    #chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    #chatbot-widget {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      max-height: 500px;
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    #chatbot-header {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    #chatbot-body { display: flex; flex-direction: column; padding: 10px; height: 400px; }
+    #chatbox {
+      flex: 1; overflow-y: auto; padding: 5px;
+      border: 1px solid #ccc; border-radius: 5px; background: #fff; margin-bottom: 5px;
+    }
+    .message { margin: 5px 0; padding: 5px 10px; border-radius: 15px; max-width: 80%; }
+    .user { background: #cce5ff; align-self: flex-end; text-align: right; }
+    .bot { background: #d4edda; align-self: flex-start; text-align: left; }
+    #input-group { display: flex; gap: 5px; }
+    #user_input { flex: 1; padding: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    #send_btn { padding: 5px 10px; border: none; background: #007bff; color: white; border-radius: 5px; cursor: pointer; }
+    #chatbot-close { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
+
+    footer { margin-top: 50px; }
+  </style>
+</head>
+
+<body>
+  <!-- Header / Navbar -->
+  <header class="bg-dark shadow-sm header">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+
+        <!-- Left: Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+          <img src="{% static 'images/mr-sanjay-rathod.jpg' %}" alt="" width="60" height="60" class="rounded-circle me-2">
+          SANJAY RATHOD
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Desktop Menu -->
+        <div class="collapse navbar-collapse justify-content-center d-none d-lg-flex">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">About Him</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'news' %}active{% endif %}" href="{% url 'news' %}">News & Events</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'stock' %}active{% endif %}" href="{% url 'stock' %}">Stock Images</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'press' %}active{% endif %}" href="{% url 'press' %}">Scholarship</a></li>
+            <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Right: Buttons -->
+        <div class="d-none d-lg-block">
+          <a href="{% url 'join' %}" id="joinButton" class="btn btn-danger fw-bold me-2" style="background-color:#f2570a;">Join Sanjay Bhau</a>
+          <a href="https://shivsenacentraloffice.com/main.asp?page=join-us" class="btn btn-danger fw-bold" style="background-color:#f2570a;">Join Shivsena</a>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- Offcanvas Sidebar (Mobile Menu) -->
+  <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="offcanvasMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menu</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'about' %}">About Him</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'news' %}">News & Events</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'stock' %}">Stock Images</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'press' %}">Scholarship</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+      <hr class="bg-light">
+      <a href="{% url 'join' %}" class="btn btn-danger w-100 mb-2" style="background-color:#f2570a;">Join Sanjay Bhau</a>
+      <a href="https://shivsenacentraloffice.com/main.asp?page=join-us" class="btn btn-danger w-100" style="background-color:#f2570a;">Join Shivsena</a>
+    </div>
+  </div>
+
+  <main class="container my-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="bg-dark text-white text-center py-4">
+    <p class="mb-0">&copy; {{ 2025 }} Sanjay Rathod. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Chatbot -->
+  <div id="chatbot-widget">
+    <div id="chatbot-header"><span>Chat with AI</span><button id="chatbot-close">&times;</button></div>
+    <div id="chatbot-body">
+      <div id="chatbox"></div>
+      <div id="input-group">
+        <input type="text" id="user_input" placeholder="Type your message...">
+        <button id="send_btn">Send</button>
+      </div>
+    </div>
+  </div>
+  <button id="chatbot-toggle">💬</button>
+
+  <script>
+    const toggleBtn = document.getElementById("chatbot-toggle");
+    const chatbot = document.getElementById("chatbot-widget");
+    const closeBtn = document.getElementById("chatbot-close");
+    const chatbox = document.getElementById("chatbox");
+    const input = document.getElementById("user_input");
+    const sendBtn = document.getElementById("send_btn");
+
+    toggleBtn.onclick = () => { chatbot.style.display = "flex"; toggleBtn.style.display = "none"; };
+    closeBtn.onclick = () => { chatbot.style.display = "none"; toggleBtn.style.display = "block"; };
+
+    function appendMessage(message, sender) {
+      const div = document.createElement("div");
+      div.classList.add("message", sender);
+      div.innerHTML = message;
+      chatbox.appendChild(div);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    sendBtn.onclick = async () => {
+      const message = input.value.trim();
+      if (!message) return;
+      appendMessage(`<b>You:</b> ${message}`, "user");
+      input.value = "";
+      try {
+        const response = await fetch("{% url 'chatbot' %}", {
+          method: "POST",
+          headers: { "X-CSRFToken": "{{ csrf_token }}", "Content-Type": "application/x-www-form-urlencoded" },
+          body: "message=" + encodeURIComponent(message)
+        });
+        const data = await response.json();
+        appendMessage(`<b>Bot:</b> ${data.message || data.error}`, "bot");
+      } catch (err) { appendMessage(`<b>Error:</b> ${err}`, "bot"); }
+    };
+
+    input.addEventListener("keydown", e => { if (e.key === "Enter") sendBtn.click(); });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

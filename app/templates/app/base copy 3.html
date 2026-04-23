@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load i18n %}
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Official Website | Sachin Kalyanshetti{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/png" href="{% static 'images/sachin.png' %}">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bjp-saffron: #f37021;
+      --bjp-dark: #1f2a33;
+      --bjp-green: #138808;
+      --light-bg: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--light-bg);
+      scroll-behavior: smooth;
+    }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: var(--bjp-dark);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(31,42,51,0.95);
+      backdrop-filter: blur(6px);
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: white !important;
+    }
+
+    .profile-img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 3px solid var(--bjp-saffron);
+    }
+
+    .lotus-icon {
+      width: 45px;
+    }
+
+    .nav-link {
+      color: #ccc !important;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: white !important;
+    }
+
+    .nav-link::after {
+      content: "";
+      height: 2px;
+      width: 0;
+      background: var(--bjp-saffron);
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .btn-saffron {
+      background: var(--bjp-saffron);
+      color: white;
+      border-radius: 6px;
+    }
+
+    .btn-saffron:hover {
+      background: #d85f12;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bjp-dark);
+      color: white;
+      padding: 30px 0;
+    }
+
+    /* BACK TO TOP */
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: none;
+      z-index: 999;
+    }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 60px;
+      height: 60px;
+      background-color: #25D366;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      line-height: 60px;
+      color: white;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== LOADER ===== -->
+<div id="loader">
+  <div class="spinner-border text-warning"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg shadow fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'images/sachin.jpg' %}" class="profile-img">
+      <span>
+        <img src="{% static 'images/lotus.png' %}" class="lotus-icon">
+        Sachin Kalyanshetti
+      </span>
+    </a>
+
+    <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+        <li><a class="nav-link" href="{% url 'news' %}">News</a></li>
+        <li><a class="nav-link" href="{% url 'stock' %}">Gallery</a></li>
+        <li><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+
+        <li class="nav-item ms-3">
+          <a href="#" class="btn btn-saffron">Join Campaign</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top:90px;"></div>
+
+{% block content %}{% endblock %}
+
+<!-- FOOTER -->
+<footer class="text-center">
+  <p>© 2025 Sachin Kalyanshetti</p>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="topBtn" class="btn btn-warning">
+  ↑
+</button>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/919999999999" class="whatsapp-float">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init();
+
+/* Loader */
+window.onload = () => {
+  document.getElementById("loader").style.display = "none";
+};
+
+/* Navbar scroll */
+window.addEventListener("scroll", () => {
+  document.querySelector(".navbar").classList.toggle("scrolled", window.scrollY > 50);
+});
+
+/* Back to top */
+const topBtn = document.getElementById("topBtn");
+window.onscroll = () => {
+  topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+};
+topBtn.onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+</script>
+
+</body>
+</html>

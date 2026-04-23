@@ -1,0 +1,1013 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}About Sachin Kalyanshetti{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* Lotus Theme */
+:root{
+--lotus:#f37021;
+--dark:#1f2a33;
+}
+
+/* Hero Banner */
+.about-hero{
+background:linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
+url("{% static 'images/s8.jpg' %}") center/cover;
+color:white;
+padding:120px 0;
+text-align:center;
+}
+
+/* Scroll reveal */
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Counter */
+.counter{
+font-size:60px;
+font-weight:bold;
+}
+
+/* Timeline */
+.timeline{
+position:relative;
+padding:40px 0;
+}
+
+.timeline::before{
+content:"";
+position:absolute;
+left:50%;
+top:0;
+width:4px;
+height:100%;
+background:var(--lotus);
+}
+
+.timeline-item{
+position:relative;
+width:50%;
+padding:20px 40px;
+}
+
+.timeline-item.left{
+left:0;
+text-align:right;
+}
+
+.timeline-item.right{
+left:50%;
+}
+
+.timeline-item::before{
+content:"";
+position:absolute;
+top:25px;
+width:20px;
+height:20px;
+background:var(--lotus);
+border-radius:50%;
+}
+
+.timeline-item.left::before{
+right:-10px;
+}
+
+.timeline-item.right::before{
+left:-10px;
+}
+
+/* Cards hover */
+.card:hover{
+transform:translateY(-6px);
+transition:.4s;
+}
+
+/* Quote Banner */
+.quote{
+background:linear-gradient(135deg,#ff9933,#f37021);
+color:white;
+padding:80px 0;
+font-size:24px;
+font-style:italic;
+}
+
+/* Achievement Icons */
+.achieve i{
+font-size:40px;
+color:var(--lotus);
+margin-bottom:15px;
+}
+
+</style>
+
+
+<!-- HERO -->
+<section class="about-hero">
+<div class="container">
+
+<h1 class="display-4 fw-bold">
+Sachin Panchappa Kalyanshetti
+</h1>
+
+<p class="lead">
+Member of Legislative Assembly – Akkalkot Constituency
+</p>
+
+</div>
+</section>
+
+
+
+<!-- PROFILE -->
+<section class="py-5 reveal">
+<div class="container">
+<div class="row align-items-center">
+
+<div class="col-md-6">
+
+<h2 class="fw-bold mb-4" style="color:#f37021;">
+Leadership Profile
+</h2>
+
+<ul class="list-group list-group-flush fs-5">
+
+<li class="list-group-item"><strong>Role:</strong> MLA – Akkalkot</li>
+
+<li class="list-group-item"><strong>District:</strong> Solapur</li>
+
+<li class="list-group-item"><strong>Party:</strong> Bharatiya Janata Party</li>
+
+<li class="list-group-item"><strong>First Elected:</strong> 2019</li>
+
+<li class="list-group-item"><strong>Re-elected:</strong> 2024</li>
+
+</ul>
+
+</div>
+
+<div class="col-md-6 text-center">
+
+<img src="{% static 'images/sachin.jpg' %}"
+class="img-fluid rounded shadow"
+style="max-height:500px">
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+
+
+<!-- BIOGRAPHY -->
+ <!-- ================= PROFESSIONAL BIOGRAPHY ================= -->
+<section class="py-5 biography-section reveal">
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <!-- LEFT IMAGE -->
+      <div class="col-md-5 text-center mb-4 mb-md-0">
+        <img src="{% static 'images/sachin.jpg' %}" 
+             class="img-fluid rounded shadow-lg bio-img"
+             alt="Sachin Kalyanshetti">
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="col-md-7">
+
+        <h2 class="fw-bold mb-3 section-title">
+          Professional Biography
+        </h2>
+
+        <p class="text-muted">
+          Born and raised in this constituency, I have witnessed firsthand the challenges and aspirations of our community. My journey in public service began with grassroots social work, where I learned the importance of listening to people's voices and translating their needs into actionable solutions.
+        </p>
+
+        <p class="text-muted">
+          With a background in public administration and a deep commitment to democratic values, I entered electoral politics with a vision to bridge the gap between government and citizens. Over the past 12 years as your elected representative, I have worked tirelessly to ensure that development reaches every corner of our constituency.
+        </p>
+
+        <p class="text-muted">
+          My legislative work focuses on three core areas: infrastructure modernization, social welfare programs, and economic empowerment. I believe in data-driven policy making and participatory governance, where every stakeholder has a voice in shaping our collective future.
+        </p>
+
+        <!-- Signature Style -->
+        <div class="mt-4">
+          <img src="{% static 'images/signature.png' %}" height="40">
+          <p class="fw-semibold mt-2 mb-0">Sachin Kalyanshetti</p>
+          <small class="text-muted">MLA, Akkalkot Constituency</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<style>/* Section title */
+.section-title {
+  color: #f37021;
+}
+
+/* Biography image */
+.bio-img {
+  max-height: 450px;
+  object-fit: cover;
+}
+
+/* Profile card */
+.profile-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  font-size: 15px;
+}
+
+/* Profile image */
+.profile-img {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}</style>
+
+<!-- COUNTERS -->
+
+<section class="py-5 text-white counter-section reveal"
+style="background:linear-gradient(135deg,#ff9933,#f37021);">
+
+<div class="container text-center">
+
+<h2 class="fw-bold mb-5">Leadership Impact</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+<h1 class="counter" data-target="148000">0</h1>
+<p>Votes Secured</p>
+</div>
+
+<div class="col-md-4">
+<h1 class="counter" data-target="168">0</h1>
+<p>₹ Crore Development Projects</p>
+</div>
+
+<div class="col-md-4">
+<h1 class="counter" data-target="25">0</h1>
+<p>Major Initiatives</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ACHIEVEMENTS -->
+<section class="py-5 reveal">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5" style="color:#f37021;">
+Key Achievements
+</h2>
+
+<div class="row text-center achieve">
+
+<div class="col-md-4">
+<i class="bi bi-building"></i>
+<h5>Infrastructure Development</h5>
+<p>Major sewerage and road infrastructure modernization.</p>
+</div>
+
+<div class="col-md-4">
+<i class="bi bi-droplet"></i>
+<h5>Water Projects</h5>
+<p>Improved water supply systems across villages.</p>
+</div>
+
+<div class="col-md-4">
+<i class="bi bi-mortarboard"></i>
+<h5>Education Support</h5>
+<p>Upgrading schools and supporting youth education.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- TIMELINE -->
+ <section class="py-5 bg-light reveal">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        {% trans "Political Journey" %}
+      </h2>
+      <p class="text-muted">
+        {% trans "A decade of dedicated service and meaningful change" %}
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+
+      <!-- ITEM 1 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="timeline-year">2014</span>
+          <h5>First elected to legislative assembly</h5>
+          <p>Won with 58.3% of the vote, starting a journey of public service</p>
+        </div>
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <span class="timeline-year">2016</span>
+          <h5>Education reform initiative</h5>
+          <p>Launched digital learning program benefiting 12,400 students</p>
+        </div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="timeline-year">2018</span>
+          <h5>Healthcare expansion</h5>
+          <p>Established three new health centers in underserved areas</p>
+        </div>
+      </div>
+
+      <!-- ITEM 4 -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <span class="timeline-year">2020</span>
+          <h5>Re-elected with increased mandate</h5>
+          <p>Secured 64.7% of votes, reflecting public trust</p>
+        </div>
+      </div>
+
+      <!-- ITEM 5 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="timeline-year">2022</span>
+          <h5>Infrastructure modernization</h5>
+          <p>Completed 47km of highway expansion and urban development</p>
+        </div>
+      </div>
+
+      <!-- ITEM 6 -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <span class="timeline-year">2024</span>
+          <h5>Agricultural development program</h5>
+          <p>Implemented water conservation projects serving 8,200 farmers</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<style>/* TIMELINE MAIN */
+.timeline {
+  position: relative;
+  margin: 50px 0;
+  padding: 0;
+}
+
+/* CENTER LINE */
+.timeline::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background: linear-gradient(to bottom, #f37021, #ff9933);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+}
+
+/* ITEM */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+}
+
+/* LEFT SIDE */
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+/* RIGHT SIDE */
+.timeline-item.right {
+  left: 50%;
+}
+
+/* CONTENT BOX */
+.timeline-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  position: relative;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.timeline-content:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* YEAR BADGE */
+.timeline-year {
+  display: inline-block;
+  background: #f37021;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* DOT */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 4px solid #f37021;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* DOT POSITION */
+.timeline-item.left::before {
+  right: -8px;
+}
+
+.timeline-item.right::before {
+  left: -8px;
+}
+
+/* MOBILE RESPONSIVE */
+@media screen and (max-width: 768px) {
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 15px;
+  }
+
+  .timeline-item.right {
+    left: 0;
+  }
+
+  .timeline-item.left {
+    text-align: left;
+  }
+
+  .timeline-item::before {
+    left: 2px;
+  }
+}</style>
+
+<!-- ================= MISSION & VISION ================= -->
+<section class="py-5 mission-vision-section">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        Our Mission & Vision
+      </h2>
+      <p class="text-muted">
+        Driving inclusive development with clear purpose and long-term vision
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- MISSION -->
+      <div class="col-md-6">
+        <div class="mv-card h-100">
+          
+          <div class="mv-icon">
+            <i class="bi bi-bullseye"></i>
+          </div>
+
+          <h4 class="fw-bold mb-3">Our Mission</h4>
+
+          <p>
+            To serve as an effective bridge between the people and the government, ensuring that every voice is heard and every need is addressed. We are committed to creating an inclusive, prosperous, and sustainable constituency where development reaches all sections of society.
+          </p>
+
+          <p class="mb-0">
+            Our mission is to facilitate holistic development by focusing on infrastructure, education, healthcare, and economic opportunities while maintaining the highest standards of transparency and accountability.
+          </p>
+
+        </div>
+      </div>
+
+      <!-- VISION -->
+      <div class="col-md-6">
+        <div class="mv-card h-100">
+          
+          <div class="mv-icon">
+            <i class="bi bi-eye"></i>
+          </div>
+
+          <h4 class="fw-bold mb-3">Our Vision</h4>
+
+          <p>
+            We envision a constituency where every citizen has access to quality education, affordable healthcare, modern infrastructure, and economic opportunities.
+          </p>
+
+          <p>
+            A place where traditional values coexist with progressive development, and where the youth have the tools and resources to build a better future.
+          </p>
+
+          <p class="mb-0">
+            Through collaborative governance and community participation, we aim to create a model constituency that serves as a benchmark for inclusive and sustainable development.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<style>/* SECTION BACKGROUND */
+.mission-vision-section {
+  background: linear-gradient(to right, #fff8f2, #ffffff);
+}
+
+/* CARD DESIGN */
+.mv-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: 0.4s;
+  border: 1px solid rgba(243,112,33,0.2);
+}
+
+/* HOVER EFFECT */
+.mv-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+/* ICON */
+.mv-icon {
+  font-size: 40px;
+  color: #f37021;
+  margin-bottom: 15px;
+}</style>
+
+
+<!-- core values -->
+ <section class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        Core Values
+      </h2>
+      <p class="text-muted">
+        Principles that guide every decision and action
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- CARD 1 -->
+      <div class="col-md-6">
+        <div class="value-card d-flex align-items-start">
+          <div class="icon-box">
+            <i class="bi bi-heart"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold">Service to people</h5>
+            <p class="text-muted mb-0">
+              Putting the needs and welfare of constituents above all else
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="col-md-6">
+        <div class="value-card d-flex align-items-start">
+          <div class="icon-box">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold">Transparency</h5>
+            <p class="text-muted mb-0">
+              Maintaining open communication and accountability in all actions
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-md-6">
+        <div class="value-card d-flex align-items-start">
+          <div class="icon-box">
+            <i class="bi bi-bullseye"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold">Results-driven approach</h5>
+            <p class="text-muted mb-0">
+              Focusing on measurable outcomes that improve quality of life
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="col-md-6">
+        <div class="value-card d-flex align-items-start">
+          <div class="icon-box">
+            <i class="bi bi-award"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold">Excellence</h5>
+            <p class="text-muted mb-0">
+              Striving for the highest standards in governance and development
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+<style>.value-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: 0.3s;
+  gap: 15px;
+}
+
+.value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Icon box */
+.icon-box {
+  min-width: 55px;
+  height: 55px;
+  background: #fff4ec;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-box i {
+  font-size: 22px;
+  color: #f37021;
+}</style>
+<!-- QUOTE -->
+
+
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        Major Achievements & Awards
+      </h2>
+      <p class="text-muted">
+        Recognitions earned through dedication and impactful governance
+      </p>
+    </div>
+
+    <!-- Center Card -->
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <div class="award-card">
+
+          <!-- ITEM 1 -->
+          <div class="award-item d-flex align-items-center">
+            <div class="award-icon">
+              <i class="bi bi-award"></i>
+            </div>
+            <p class="mb-0">State Award for Best Constituency Development (2019)</p>
+          </div>
+
+          <!-- ITEM 2 -->
+          <div class="award-item d-flex align-items-center">
+            <div class="award-icon">
+              <i class="bi bi-award"></i>
+            </div>
+            <p class="mb-0">Recognition for Digital Literacy Initiative (2020)</p>
+          </div>
+
+          <!-- ITEM 3 -->
+          <div class="award-item d-flex align-items-center">
+            <div class="award-icon">
+              <i class="bi bi-award"></i>
+            </div>
+            <p class="mb-0">Outstanding Contribution to Rural Healthcare (2021)</p>
+          </div>
+
+          <!-- ITEM 4 -->
+          <div class="award-item d-flex align-items-center">
+            <div class="award-icon">
+              <i class="bi bi-award"></i>
+            </div>
+            <p class="mb-0">Excellence in Infrastructure Development (2023)</p>
+          </div>
+
+          <!-- ITEM 5 -->
+          <div class="award-item d-flex align-items-center">
+            <div class="award-icon">
+              <i class="bi bi-award"></i>
+            </div>
+            <p class="mb-0">Community Service Award (2024)</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<style>/* Main card */
+.award-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 25px 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Each item */
+.award-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+/* Remove last border */
+.award-item:last-child {
+  border-bottom: none;
+}
+
+/* Icon */
+.award-icon {
+  min-width: 45px;
+  height: 45px;
+  background: #fff4ec;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.award-icon i {
+  color: #f37021;
+  font-size: 20px;
+}
+
+/* Hover effect */
+.award-item:hover {
+  transform: translateX(5px);
+  transition: 0.3s;
+}</style>
+
+<section class="py-5">
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <!-- LEFT CONTENT -->
+      <div class="col-md-6">
+
+        <h2 class="fw-bold mb-3" style="color:#f37021;">
+          Constituency Development Agenda
+        </h2>
+
+        <p class="text-muted">
+          Our comprehensive plan focuses on sustainable infrastructure, quality education, accessible healthcare, economic growth, and environmental conservation. Every initiative is designed with input from community stakeholders to ensure it addresses real needs and creates lasting impact.
+        </p>
+
+        <p class="text-muted">
+          Through systematic planning, efficient execution, and continuous monitoring, we are building a constituency that offers opportunity and prosperity for all its residents.
+        </p>
+
+      </div>
+
+      <!-- RIGHT VISUAL / ICON BLOCKS -->
+      <div class="col-md-6">
+
+        <div class="row g-3">
+
+          <div class="col-6">
+            <div class="agenda-box text-center">
+              <i class="bi bi-building"></i>
+              <p>Infrastructure</p>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="agenda-box text-center">
+              <i class="bi bi-mortarboard"></i>
+              <p>Education</p>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="agenda-box text-center">
+              <i class="bi bi-heart-pulse"></i>
+              <p>Healthcare</p>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="agenda-box text-center">
+              <i class="bi bi-graph-up"></i>
+              <p>Economic Growth</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<style>.agenda-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  transition: 0.3s;
+}
+
+.agenda-box i {
+  font-size: 30px;
+  color: #f37021;
+  margin-bottom: 10px;
+}
+
+.agenda-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}</style>
+
+<section class="quote-section text-center">
+
+  <div class="container">
+
+    <div class="quote-box">
+
+      <!-- Quote Icon -->
+      <div class="quote-icon">
+        <i class="bi bi-quote"></i>
+      </div>
+
+      <!-- Quote Text -->
+      <p class="quote-text">
+        “Development with transparency and service to people 
+        is the foundation of true leadership.”
+      </p>
+
+      <!-- Signature -->
+      <div class="quote-author">
+        <img src="{% static 'images/signature.png' %}" alt="Signature">
+        <h6 class="mt-2 mb-0 fw-bold">Sachin Kalyanshetti</h6>
+        <small>MLA, Akkalkot Constituency</small>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<style>.quote-section {
+  background: linear-gradient(135deg, #ff9933, #f37021);
+  padding: 80px 0;
+  color: white;
+}
+
+.quote-box {
+  max-width: 800px;
+  margin: auto;
+}
+
+.quote-icon i {
+  font-size: 40px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.quote-text {
+  font-size: 24px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.quote-author img {
+  height: 40px;
+  margin-top: 20px;
+}</style>
+<script>
+
+/* Reveal animation */
+
+function reveal(){
+document.querySelectorAll(".reveal").forEach(el=>{
+const top=el.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+el.classList.add("active");
+}
+});
+}
+
+window.addEventListener("scroll",reveal);
+reveal();
+
+
+/* Counter animation */
+
+const counters=document.querySelectorAll(".counter");
+
+counters.forEach(counter=>{
+
+const update=()=>{
+const target=+counter.getAttribute("data-target");
+const count=+counter.innerText;
+const inc=target/200;
+
+if(count<target){
+counter.innerText=Math.ceil(count+inc);
+setTimeout(update,10);
+}
+else{
+counter.innerText=target.toLocaleString();
+}
+}
+
+update();
+
+});
+
+</script>
+
+{% endblock %}

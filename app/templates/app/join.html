@@ -1,0 +1,313 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us - Sanjay Rathod{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <!-- Banner -->
+    <!-- ================= JOIN US HERO ================= -->
+<section class="join-hero text-center">
+  <div class="container">
+
+    <h1 class="fw-bold display-5">
+      Join Our Campaign
+    </h1>
+
+    <p class="lead mt-3">
+      Be part of the change. Volunteer with us to build a better community 
+      and create lasting impact across Akkalkot constituency.
+    </p>
+
+    <!-- CTA BUTTON -->
+    <div class="mt-4">
+      <a href="#join-form" class="btn join-btn px-4 py-2">
+        Become a Volunteer
+      </a>
+    </div>
+
+  </div>
+</section>
+<style>
+
+/* HERO SECTION */
+.join-hero{
+  background: linear-gradient(rgba(31,42,51,.85), rgba(31,42,51,.85)),
+              url("{% static 'images/join_.jpeg' %}") center/cover;
+  color: white;
+  padding: 100px 0;
+}
+
+/* BUTTON */
+.join-btn{
+  background: linear-gradient(135deg,#ff9933,#f37021);
+  color: white;
+  border: none;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.join-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  color: white;
+}
+
+</style>
+
+ <!-- ================= PARTICIPATION OPPORTUNITIES ================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Participation Opportunities</h2>
+      <p class="text-muted">Multiple ways to contribute your time and skills</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-4">
+
+      <!-- Card 1 -->
+      <div class="col-md-6">
+        <div class="participation-card">
+          <i class="bi bi-people"></i>
+          <div>
+            <h5>Community outreach</h5>
+            <p>Help organize and participate in community events, awareness campaigns, and public gatherings</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-6">
+        <div class="participation-card">
+          <i class="bi bi-heart"></i>
+          <div>
+            <h5>Social welfare programs</h5>
+            <p>Support welfare initiatives for underprivileged sections and contribute to social development</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-6">
+        <div class="participation-card">
+          <i class="bi bi-megaphone"></i>
+          <div>
+            <h5>Campaign activities</h5>
+            <p>Assist in political campaigns, voter awareness drives, and grassroots mobilization efforts</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-6">
+        <div class="participation-card">
+          <i class="bi bi-calendar-event"></i>
+          <div>
+            <h5>Event coordination</h5>
+            <p>Help plan and execute public events, health camps, and educational programs</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================= BENEFITS + FORM ================= -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="row g-5">
+
+      <!-- ================= BENEFITS ================= -->
+      <div class="col-md-6">
+
+        <h3 class="fw-bold mb-4">Benefits of joining</h3>
+
+        <div class="benefits-card">
+
+          <p><span>●</span> Opportunity to contribute to meaningful social change</p>
+          <p><span>●</span> Platform to voice concerns and ideas directly</p>
+          <p><span>●</span> Networking with like-minded individuals</p>
+          <p><span>●</span> Skill development through training programs</p>
+          <p><span>●</span> Recognition and certificates for contributions</p>
+          <p><span>●</span> Direct involvement in constituency development</p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= FORM ================= -->
+      <div class="col-md-6">
+
+        <div class="form-card">
+
+          <h4 class="fw-bold">Volunteer Registration</h4>
+          <p class="text-muted mb-4">Fill out the form below to become a volunteer</p>
+
+          <form>
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label>Full name</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label>Email address</label>
+              <input type="email" class="form-control">
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label>Phone number</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <!-- Interests -->
+            <div class="mb-3">
+              <label class="mb-2">Areas of interest</label>
+
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check"><input type="checkbox"> Education initiatives</div>
+                  <div class="form-check"><input type="checkbox"> Infrastructure development</div>
+                  <div class="form-check"><input type="checkbox"> Women empowerment</div>
+                  <div class="form-check"><input type="checkbox"> Agricultural support</div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-check"><input type="checkbox"> Healthcare programs</div>
+                  <div class="form-check"><input type="checkbox"> Environmental conservation</div>
+                  <div class="form-check"><input type="checkbox"> Youth development</div>
+                  <div class="form-check"><input type="checkbox"> Social welfare</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="mb-3">
+              <label>Why do you want to volunteer?</label>
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+
+            <!-- Button -->
+            <button class="btn submit-btn w-100">
+              Submit registration
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<style>
+
+/* PARTICIPATION CARD */
+.participation-card{
+  display:flex;
+  gap:15px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.participation-card i{
+  font-size:28px;
+  color:#f37021;
+}
+
+.participation-card:hover{
+  transform:translateY(-5px);
+}
+
+
+/* BENEFITS */
+.benefits-card{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.benefits-card p{
+  margin-bottom:10px;
+}
+
+.benefits-card span{
+  color:#f37021;
+  margin-right:8px;
+}
+
+
+/* FORM */
+.form-card{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.submit-btn{
+  background:linear-gradient(135deg,#ff9933,#f37021);
+  color:white;
+  border:none;
+  padding:12px;
+  font-weight:600;
+}
+
+.submit-btn:hover{
+  opacity:0.9;
+}
+
+.form-control{
+  border-radius:8px;
+  padding:10px;
+}
+
+</style>
+<!-- ================= JOIN INTRO SECTION ================= -->
+<section class="py-5 text-center bg-light">
+  <div class="container">
+
+    <h2 class="fw-bold mb-3" style="color:#f37021;">
+      Together We Can Build a Better Future
+    </h2>
+
+    <p class="lead text-muted mx-auto" style="max-width: 750px;">
+      Your participation, no matter how small, makes a meaningful difference in our community. 
+      Join a dedicated team of volunteers working towards positive change, inclusive development, 
+      and a stronger future for everyone.
+    </p>
+
+  </div>
+</section>
+
+    <!-- Contact Info / WhatsApp -->
+    <div class="text-center mt-5">
+        <p>Or contact us directly via <a href="https://wa.me/XXXXXXXXXXX" target="_blank">WhatsApp</a></p>
+        <p class="small">We respect your privacy. Read our <a href="#">Privacy Policy</a> and <a href="#">Cookie Policy</a>.</p>
+    </div>
+</div>
+{% if alert %}
+<script>
+    alert("{{ alert }}");
+</script>
+{% endif %}
+
+{% endblock %}

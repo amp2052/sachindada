@@ -1,0 +1,170 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Gallery - Sachin{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="gallery-hero d-flex align-items-center justify-content-center text-white">
+  <div class="text-center hero-overlay p-5 rounded">
+    <h1 class="fw-bold display-5">Gallery</h1>
+    <p class="lead">A glimpse into the journey, service, and people of Maharashtra</p>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- IMAGE CARD -->
+      {% for i in "12345678" %}
+      <div class="col-md-3 col-sm-6 gallery-item">
+        <div class="card shadow-sm gallery-card">
+
+          <div class="img-wrapper">
+            <img src="{% static 'images/g'|add:i|add:'.jpg' %}" class="card-img-top" alt="Gallery Image">
+
+            <!-- DOWNLOAD BUTTON -->
+            <a href="{% static 'images/g'|add:i|add:'.jpg' %}" download class="download-btn">
+              <i class="bi bi-download"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- HIDDEN IMAGES -->
+      {% for i in "910111213141516" %}
+      <div class="col-md-3 col-sm-6 gallery-item d-none">
+        <div class="card shadow-sm gallery-card">
+
+          <div class="img-wrapper">
+            <img src="{% static 'images/g'|add:i|add:'.jpg' %}" class="card-img-top" alt="Gallery Image">
+
+            <a href="{% static 'images/g'|add:i|add:'.jpg' %}" download class="download-btn">
+              <i class="bi bi-download"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <!-- VIEW ALL BUTTON -->
+    <div class="text-center mt-5">
+      <button id="viewAllBtn" class="btn view-btn btn-lg">
+        View All Images
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= STYLES ================= -->
+<style>
+:root{
+  --lotus:#f37021;
+  --dark:#1f2a33;
+}
+
+/* HERO */
+.gallery-hero{
+  background:linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
+  url("{% static 'images/s8.jpg' %}") center/cover;
+  height:300px;
+}
+
+.hero-overlay{
+  background:rgba(0,0,0,0.5);
+}
+
+/* IMAGE CARD */
+.gallery-card{
+  border:none;
+  border-radius:12px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.img-wrapper{
+  position:relative;
+  overflow:hidden;
+}
+
+.gallery-card img{
+  height:220px;
+  object-fit:cover;
+  transition:0.3s;
+  width:100%;
+}
+
+/* HOVER */
+.gallery-card:hover img{
+  transform:scale(1.08);
+}
+
+.gallery-card:hover{
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* DOWNLOAD BUTTON */
+.download-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:rgba(0,0,0,0.6);
+  color:white;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.download-btn:hover{
+  background:var(--lotus);
+  color:white;
+}
+
+/* BUTTON */
+.view-btn{
+  background:linear-gradient(135deg,#ff9933,#f37021);
+  color:white;
+  border:none;
+  border-radius:8px;
+  padding:10px 25px;
+  font-weight:600;
+}
+
+.view-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .gallery-card img{
+    height:180px;
+  }
+}
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+document.getElementById('viewAllBtn').addEventListener('click', function() {
+  document.querySelectorAll('.gallery-item.d-none').forEach(el => {
+    el.classList.remove('d-none');
+  });
+  this.style.display = 'none';
+});
+</script>
+
+{% endblock %}

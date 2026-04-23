@@ -1,0 +1,154 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Citizen Services & Government Schemes{% endblock %}
+
+{% block content %}
+
+<style>
+:root{
+  --lotus:#f37021;
+  --dark:#1f2a33;
+}
+
+/* HERO */
+.services-hero{
+  background:linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
+  url("{% static 'images/s8.jpg' %}") center/cover;
+  color:white;
+  padding:80px 0;
+  text-align:center;
+}
+
+/* FILTER */
+.filter-btn.active{
+  background:var(--lotus);
+  color:white;
+}
+
+/* CARD */
+.scheme-card{
+  border:none;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transition:0.3s;
+  height:100%;
+}
+
+.scheme-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 25px rgba(0,0,0,0.15);
+}
+
+.scheme-title{
+  color:var(--lotus);
+  font-weight:700;
+}
+
+.scheme-section{
+  font-size:14px;
+}
+</style>
+
+<!-- HERO -->
+<section class="services-hero">
+  <div class="container">
+    <h1 class="fw-bold">Citizen Services & Government Schemes</h1>
+    <p>Explore welfare schemes available for citizens of Maharashtra</p>
+  </div>
+</section>
+
+<div class="container py-5">
+
+<!-- SEARCH -->
+<form method="GET" class="mb-4 text-center">
+  <input type="text" name="q" placeholder="Search schemes..." value="{{ request.GET.q }}" class="form-control w-50 mx-auto">
+</form>
+
+<!-- FILTER -->
+<div class="text-center mb-4">
+<button class="btn btn-outline-warning m-1 filter-btn active" data-filter="all">All</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="health">Healthcare</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="education">Education</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="employment">Employment</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="housing">Housing</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="agriculture">Agriculture</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="women">Women</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="senior">Senior Citizen</button>
+<button class="btn btn-outline-warning m-1 filter-btn" data-filter="other">Certificates</button>
+</div>
+
+<!-- SCHEMES GRID -->
+<div class="row g-4">
+
+{% for scheme in page_obj %}
+<div class="col-md-4 scheme-item" data-category="{{ scheme.category }}">
+<div class="card scheme-card p-3">
+
+<h5 class="scheme-title">{{ scheme.name }}</h5>
+
+<p class="scheme-section">
+<strong>Benefits:</strong> {{ scheme.benefits }}
+</p>
+
+<p>
+<strong>Eligibility:</strong> {{ scheme.eligibility }}
+</p>
+
+<a href="{{ scheme.link }}" target="_blank" class="btn btn-sm btn-warning mt-2">
+Apply Now
+</a>
+
+</div>
+</div>
+{% endfor %}
+
+</div>
+
+<!-- PAGINATION -->
+<div class="text-center mt-5">
+
+{% if page_obj.has_previous %}
+<a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+class="btn btn-outline-dark">Previous</a>
+{% endif %}
+
+<span class="mx-3">
+Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+</span>
+
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
+class="btn btn-outline-dark">Next</a>
+{% endif %}
+
+</div>
+
+</div>
+
+<!-- FILTER SCRIPT -->
+<script>
+const filterBtns = document.querySelectorAll(".filter-btn");
+const items = document.querySelectorAll(".scheme-item");
+
+filterBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    filterBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.getAttribute("data-filter");
+
+    items.forEach(item => {
+      if(filter === "all" || item.dataset.category === filter){
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+  });
+});
+</script>
+
+{% endblock %}

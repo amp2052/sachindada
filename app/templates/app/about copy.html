@@ -1,0 +1,276 @@
+
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}About Sanjay Rathod{% endblock %}
+
+{% block content %}
+
+<!-- Section 1: Basic Info -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Text Column -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h2 class="fw-bold mb-3" style="color: #b95a06;">About Sanjay Rathod</h2>
+        <ul class="list-group list-group-flush fs-5">
+          <li class="list-group-item"><strong>Name:</strong> Sanjay Dulichand Rathod</li>
+          <li class="list-group-item"><strong>Age:</strong> 52 years</li>
+          <li class="list-group-item"><strong>Constituency:</strong> Digras (Yavatmal)</li>
+          <li class="list-group-item"><strong>Party:</strong> Shiv Sena </li>
+          <li class="list-group-item"><strong>Profession:</strong> Agriculturist, Social Worker</li>
+          <li class="list-group-item"><strong>Education:</strong> Post-graduate</li>
+          <li class="list-group-item"><strong>Community:</strong> Banjara</li>
+        </ul>
+      </div>
+
+      <!-- Image Column -->
+      <div class="col-md-6 text-center">
+        <img src="{% static 'images/about1.jpg' %}" alt="Sanjay Rathod" class="img-fluid rounded shadow" style="max-height:500px; object-fit:cover;">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Biography -->
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Image Column -->
+      <div class="col-md-6 text-center mb-4 mb-md-0">
+        <img src="{% static 'images/logo.svg' %}" alt="Sanjay Rathod Leadership" class="img-fluid rounded shadow" style="width:500px; height:500px; object-fit:cover;">
+      </div>
+
+      <!-- Text Column -->
+      <div class="col-md-6">
+        <h2 class="fw-bold mb-3" style="color: #b95a06;">Political Journey & Achievements</h2>
+        <p id="rathod-content">
+          Sanjay Rathod is a prominent Shiv Sena politician from Maharashtra, representing the Digras Assembly Constituency in the Maharashtra Legislative Assembly. He began his political journey at the age of 21 with the Shiv Shakti Organisation and later became active in Shiv Sena in the mid-1990s. In 1998–1999, he was appointed as the Yavatmal district chief of Shiv Sena by Balasaheb Thackeray. He was first elected as an MLA in 2004 from the Darwha constituency, which ceased to exist from 2008. Subsequently, he was elected from the Digras constituency in 2009, 2014, 2019, and 2024 <a href="https://en.wikipedia.org/wiki/Sanjay_Rathod" target="_blank">Wikipedia</a>.
+        </p>
+        <p>
+          In December 2014, Rathod was appointed as a state minister in the Maharashtra government, handling the revenue portfolio and serving as the guardian minister of Yavatmal district <a href="https://en.bharatpedia.org/wiki/Sanjay_Rathod" target="_blank">Bharatpedia</a>. He was later made a cabinet minister on 30 December 2019.
+        </p>
+        <p>
+          Rathod belongs to the Banjara community, a significant vote bank in Maharashtra, particularly in the Vidarbha region. He is known for his aggressive political style and has a large following in the Banjara community.
+        </p>
+      
+        <!-- PDF Button -->
+
+        <a href="{% static 'pdf/part.pdf' %}" download class="btn btn-outline-success btn-lg"><i class="fas fa-file-pdf"></i> Download PDF</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      const { jsPDF } = window.jspdf;
+    
+      document.getElementById('downloadPdf').addEventListener('click', () => {
+        const doc = new jsPDF();
+        const content = document.getElementById('rathod-content').innerText;
+      
+        doc.setFontSize(12);
+        doc.text(content, 10, 20, { maxWidth: 180 }); // wrap text to fit page
+        doc.save('Sanjay_Rathod_Political_Journey.pdf');
+      });
+    </script>
+<!-- Animated Vertical Timeline Section with Icons & Hover Effects -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5" style="color: #b95a06;">Political Milestones</h2>
+
+    <div class="timeline">
+
+      <!-- Milestone 1: Joined Politics -->
+      <div class="timeline-item" data-aos="fade-up">
+        <div class="timeline-icon bg-primary text-white">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <div class="timeline-year">1995</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-primary text-white hover-card">
+          <p>Joined Shiv Sena and became active in state politics.</p>
+        </div>
+      </div>
+
+      <!-- Milestone 2: District Chief -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="timeline-icon bg-success text-white">
+          <i class="fas fa-chess-king"></i>
+        </div>
+        <div class="timeline-year">1998–1999</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-success text-white hover-card">
+          <p>Appointed as Yavatmal district chief of Shiv Sena by Balasaheb Thackeray.</p>
+        </div>
+      </div>
+
+      <!-- Milestone 3: First MLA -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="timeline-icon bg-warning text-dark">
+          <i class="fas fa-vote-yea"></i>
+        </div>
+        <div class="timeline-year">2004</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-warning text-dark hover-card">
+          <p>Elected as MLA from Darwha constituency (ceased to exist in 2008).</p>
+        </div>
+      </div>
+
+      <!-- Milestone 4: Digras MLA -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="timeline-icon bg-danger text-white">
+          <i class="fas fa-landmark"></i>
+        </div>
+        <div class="timeline-year">2009, 2014, 2019, 2024</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-danger text-white hover-card">
+          <p>Elected as MLA from Digras constituency.</p>
+        </div>
+      </div>
+
+      <!-- Milestone 5: State Minister -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+        <div class="timeline-icon bg-info text-white">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="timeline-year">2014</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-info text-white hover-card">
+          <p>Appointed as State Minister handling Revenue & Guardian Minister of Yavatmal district.</p>
+        </div>
+      </div>
+
+      <!-- Milestone 6: Cabinet Minister -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="500">
+        <div class="timeline-icon bg-secondary text-white">
+          <i class="fas fa-gavel"></i>
+        </div>
+        <div class="timeline-year">2019</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-secondary text-white hover-card">
+          <p>Made Cabinet Minister in Maharashtra Government.</p>
+        </div>
+      </div>
+
+      <!-- Milestone 7: Party Split -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
+        <div class="timeline-icon bg-dark text-white">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="timeline-year">2022</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-dark text-white hover-card">
+          <p>Continued Shiv Sena after the party split.</p>
+        </div>
+      </div>
+
+      <!-- Cabinet Minister, Food & Drug Administration -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="700">
+        <div class="timeline-icon bg-primary text-white">
+          <i class="fas fa-prescription-bottle-alt"></i>
+        </div>
+        <div class="timeline-year">2022</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-primary text-white hover-card">
+          <p>Appointed as Cabinet Minister for Food & Drug Administration in Maharashtra Government.</p>
+        </div>
+      </div>
+
+      <!-- Cabinet Minister, Soil & Water Conservation -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="800">
+        <div class="timeline-icon bg-success text-white">
+          <i class="fas fa-water"></i>
+        </div>
+        <div class="timeline-year">2024 to present</div>
+        <div class="timeline-content shadow-sm p-3 rounded bg-success text-white hover-card">
+          <p>Appointed as Cabinet Minister for Soil & Water Conservation, focusing on sustainable agriculture and water resource management.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline CSS with Icons, Hover & Color Coding -->
+<style>
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #b95a06;
+  transform: translateX(-50%);
+}
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+.timeline-item:nth-child(even) {
+  left: 50%;
+}
+.timeline-item:hover {
+  transform: translateY(-5px);
+}
+.timeline-year {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #b95a06;
+  margin-bottom: 0.5rem;
+}
+.timeline-content {
+  background: white;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+.hover-card:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transform: translateY(-5px);
+}
+.timeline-icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  z-index: 3;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.timeline-item:hover .timeline-icon {
+  transform: scale(1.2) translate(-50%, -50%);
+}
+@media (max-width: 767px) {
+  .timeline::before {
+    left: 20px;
+  }
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+  }
+  .timeline-icon {
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+}
+</style>
+
+{% endblock %}

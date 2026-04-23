@@ -1,31 +1,1258 @@
 {% extends 'app/base.html' %}
-{% block title %}Home - My Portfolio{% endblock %}
 {% load static %}
+{% load i18n %}
+
+{% block title %}Home | Sachin Kalyanshetti{% endblock %}
 
 {% block content %}
-<div class="row align-items-center">
-  <!-- Profile Image -->
-  <div class="col-md-6 text-center">
-    <img src="{% static 'images/image.jpg' %}" 
-         alt="My Profile Photo" 
-         class="img-fluid rounded-circle shadow" 
-         style="max-width: 500px;">
+
+<!-- ================= HERO SECTION ================= -->
+<!-- <section style="background: linear-gradient(rgba(31,42,51,0.85), rgba(3, 8, 12, 0.85)), url('{% static "images/s8.jpg" %}') center/cover no-repeat; color:white; padding:120px 0;">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold">{% trans "Committed to Progress. Dedicated to People." %}</h1>
+    <p class="lead mt-3">{% trans "Serving Akkalkot Vidhansabha Constituency with transparency, development and vision." %}</p>
+    <a href="{% url 'contact' %}" class="btn btn-warning btn-lg mt-4 px-5">
+      {% trans "Connect With Us" %}
+    </a>
+  </div>
+</section> -->
+<!-- ================= HERO CAROUSEL ================= -->
+<section>
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+
+      <!-- ===== SLIDE 1 ===== -->
+      <div class="carousel-item active">
+        <div class="hero-slide" style="background: url('{% static "images/s8.jpg" %}') center/cover no-repeat;">
+          <div class="overlay"></div>
+          <div class="container text-center text-white content">
+            <h1 class="display-4 fw-bold">
+              {% trans "Building a better future for our constituency" %}
+            </h1>
+            <p class="lead mt-3">
+              {% trans "Working together to create sustainable development and prosperity" %}
+            </p>
+            <a href="{% url 'contact' %}" class="btn btn-warning btn-lg mt-4 px-5">
+              {% trans "Connect With Us" %}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SLIDE 2 ===== -->
+      <div class="carousel-item">
+        <div class="hero-slide" style="background: url('{% static "images/s9.jpg" %}') center/cover no-repeat;">
+          <div class="overlay"></div>
+          <div class="container text-center text-white content">
+            <h1 class="display-4 fw-bold">
+              {% trans "Dedicated service to the community" %}
+            </h1>
+            <p class="lead mt-3">
+              {% trans "Your voice in the legislative assembly" %}
+            </p>
+            <a href="{% url 'contact' %}" class="btn btn-warning btn-lg mt-4 px-5">
+              {% trans "Connect With Us" %}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SLIDE 3 ===== -->
+      <div class="carousel-item">
+        <div class="hero-slide" style="background: url('{% static "images/s10.jpg" %}') center/cover no-repeat;">
+          <div class="overlay"></div>
+          <div class="container text-center text-white content">
+            <h1 class="display-4 fw-bold">
+              {% trans "Infrastructure development for progress" %}
+            </h1>
+            <p class="lead mt-3">
+              {% trans "Modern roads, schools, and healthcare facilities" %}
+            </p>
+            <a href="{% url 'contact' %}" class="btn btn-warning btn-lg mt-4 px-5">
+              {% trans "Connect With Us" %}
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== CONTROLS ===== -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+<style>
+  /* HERO CAROUSEL */
+.hero-slide {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-slide .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+}
+
+.hero-slide .content {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+
+<!-- ================= MAIN IMPACT COUNTERS ================= -->
+<section class="py-5 position-relative" style="background: linear-gradient(135deg, #f8f9fa, #eef2f3);">
+  <div class="container">
+    <div class="row g-4 text-center">
+
+      <!-- CARD 1 -->
+      <div class="col-md-3">
+        <div class="impact-card p-4">
+          <i class="fas fa-road icon"></i>
+          <h2 class="counter" data-target="150">0</h2>
+          <p class="fw-bold">{% trans "Development Projects" %}</p>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="col-md-3">
+        <div class="impact-card p-4">
+          <i class="fas fa-users icon"></i>
+          <h2 class="counter" data-target="50000">0</h2>
+          <p class="fw-bold">{% trans "Beneficiary Families" %}</p>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-md-3">
+        <div class="impact-card p-4">
+          <i class="fas fa-handshake icon"></i>
+          <h2 class="counter" data-target="200">0</h2>
+          <p class="fw-bold">{% trans "Public Meetings" %}</p>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="col-md-3">
+        <div class="impact-card p-4">
+          <i class="fas fa-chart-line icon"></i>
+          <h2 class="counter" data-target="100">0</h2>
+          <p class="fw-bold">{% trans "Commitment %" %}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>
+  /* GLASS CARD */
+.impact-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* GRADIENT BORDER EFFECT */
+.impact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(45deg, #f37021, #ffcc00, #138808);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ICON ANIMATION */
+.icon {
+  font-size: 35px;
+  color: #f37021;
+  margin-bottom: 10px;
+  display: inline-block;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+/* FLOATING ICON EFFECT */
+@keyframes floatIcon {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* NUMBER STYLE */
+.impact-card h2 {
+  font-size: 34px;
+  font-weight: 300;
+  color: #333;
+}
+
+/* TITLE */
+.impact-card p {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* HOVER EFFECT */
+.impact-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+</style>
+
+
+<!-- ================= ABOUT SECTION ================= -->
+<!-- ================= ABOUT SECTION ================= --><section class="py-5 about-section" style="background: linear-gradient(to right, #fff8f2, #ffffff);">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- LEFT IMAGE -->
+      <div class="col-md-5 mb-4 mb-md-0 text-center" data-aos="fade-right">
+        <img src="{% static 'images/sachin-about.jpg' %}" 
+             class="img-fluid rounded shadow-lg about-img" 
+             alt="Sachin Kalyanshetti">
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="col-md-7" data-aos="fade-left">
+
+        <h2 class="fw-bold mb-3">
+          {% trans "Meet Your Representative" %}
+        </h2>
+
+        <p class="text-muted">
+          {% trans "With over 12 years of public service, I am dedicated to representing the voices and interests of our constituency in the legislative assembly. My focus has always been on grassroots development, transparent governance, and ensuring that every citizen has access to essential services." %}
+        </p>
+
+        <p class="text-muted">
+          {% trans "From rural infrastructure to urban planning, from education reforms to healthcare accessibility, my work has been guided by one principle: the welfare of the people comes first." %}
+        </p>
+
+        <!-- SIGNATURE -->
+        <div class="mt-3 signature">
+          <img src="{% static 'images/signature.png' %}" alt="Signature" height="50">
+          <p class="fw-bold mt-2 mb-0">Sachin Kalyanshetti</p>
+          <small class="text-muted">MLA, Akkalkot</small>
+        </div>
+
+        <a href="{% url 'about' %}" 
+           class="btn btn-warning mt-4 px-4 fw-semibold">
+          {% trans "Read Full Biography" %}
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- MESSAGE CARD -->
+    <div class="row mt-5">
+      <div class="col-md-10 mx-auto" data-aos="fade-up">
+        <div class="leader-card p-4 text-center">
+
+          <h4 class="fw-bold mb-3" style="color:#f37021;">
+            {% trans "Message from the Leader" %}
+          </h4>
+
+          <p class="text-muted">
+            {% trans "My mission is to ensure inclusive growth, empower youth, and bring sustainable development to every corner of our constituency. Together, we can build a stronger and prosperous future." %}
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>.about-img {
+  transition: 0.4s;
+}
+.about-img:hover {
+  transform: scale(1.05);
+}
+
+/* SIGNATURE */
+.signature img {
+  filter: contrast(120%);
+}
+
+/* MESSAGE CARD */
+.leader-card {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.leader-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}</style>
+
+<section class="py-5 position-relative" style="background: linear-gradient(135deg, #eef2f3, #ffffff);">
+  <div class="container text-center">
+
+    <h2 class="fw-bold mb-5" style="color:#1f2a33;">
+      {% trans "Development Impact" %}
+    </h2>
+
+    <div class="row g-4">
+
+      <!-- ROAD PROJECTS -->
+      <div class="col-md-3" data-aos="zoom-in">
+        <div class="impact-card p-4">
+          <i class="fas fa-road icon"></i>
+          <h2 class="counter" data-target="125">0</h2>
+          <p class="fw-bold">{% trans "Road Projects Completed" %}</p>
+        </div>
+      </div>
+
+      <!-- SCHOOLS -->
+      <div class="col-md-3" data-aos="zoom-in">
+        <div class="impact-card p-4">
+          <i class="fas fa-school icon"></i>
+          <h2 class="counter" data-target="48">0</h2>
+          <p class="fw-bold">{% trans "Schools Improved" %}</p>
+        </div>
+      </div>
+
+      <!-- WATER SCHEMES -->
+      <div class="col-md-3" data-aos="zoom-in">
+        <div class="impact-card p-4">
+          <i class="fas fa-tint icon"></i>
+          <h2 class="counter" data-target="32">0</h2>
+          <p class="fw-bold">{% trans "Water Schemes Implemented" %}</p>
+        </div>
+      </div>
+
+      <!-- CITIZENS -->
+      <div class="col-md-3" data-aos="zoom-in">
+        <div class="impact-card p-4">
+          <i class="fas fa-users icon"></i>
+          <h2 class="counter" data-target="15000">0</h2>
+          <p class="fw-bold">{% trans "Citizens Benefited" %}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= GALLERY PREVIEW (3 IMAGES) ================= -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">{% trans "Development Gallery" %}</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'images/g1.jpg' %}" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'images/g2.jpg' %}" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="{% static 'images/g3.jpg' %}" class="img-fluid rounded shadow">
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{% url 'stock' %}" class="btn btn-warning px-4">
+        {% trans "View Full Gallery" %}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUTO SLIDING GALLERY ================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <div class="carousel-item active">
+          <img src="{% static 'images/gallery1.jpg' %}" class="d-block w-100 rounded shadow">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'images/gallery2.jpg' %}" class="d-block w-100 rounded shadow">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static 'images/gallery3.jpg' %}" class="d-block w-100 rounded shadow">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- latst update -->
+
+<!-- ================= DEVELOPMENT WORKS ================= -->
+<section class="py-5" style="background:#f9fafc;">
+  <div class="container">
+
+    <!-- HEADING -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">{% trans "Development Works" %}</h2>
+      <p class="text-muted">
+        {% trans "Key infrastructure and welfare projects transforming our constituency" %}
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- PROJECT 1 -->
+      <div class="col-md-4">
+        <div class="project-card h-100">
+
+          <!-- IMAGE -->
+          <div class="project-img">
+            <img src="{% static 'images/project1.jpg' %}" class="img-fluid rounded">
+
+            <!-- STATUS BADGE -->
+            <span class="status-badge completed">Completed</span>
+          </div>
+
+          <!-- CONTENT -->
+          <div class="p-3">
+            <h5 class="fw-bold">Highway Expansion Project</h5>
+            <p class="text-muted small">
+              Four-lane highway connecting major towns, reducing travel time and boosting commerce
+            </p>
+
+            <!-- LOCATION -->
+            <p class="mb-1 small">
+              <i class="fas fa-map-marker-alt text-warning"></i>
+              District Highway 47
+            </p>
+
+            <!-- DATE -->
+            <p class="small">
+              <i class="fas fa-calendar-alt text-warning"></i>
+              March 2026
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="col-md-4">
+        <div class="project-card h-100">
+
+          <div class="project-img">
+            <img src="{% static 'images/project2.jpg' %}" class="img-fluid rounded">
+
+            <span class="status-badge ongoing">Ongoing</span>
+          </div>
+
+          <div class="p-3">
+            <h5 class="fw-bold">Community Health Center</h5>
+            <p class="text-muted small">
+              State-of-the-art healthcare facility with 24/7 emergency services and specialist care
+            </p>
+
+            <p class="mb-1 small">
+              <i class="fas fa-map-marker-alt text-warning"></i>
+              Central District
+            </p>
+
+            <p class="small">
+              <i class="fas fa-calendar-alt text-warning"></i>
+              Expected August 2026
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="col-md-4">
+        <div class="project-card h-100">
+
+          <div class="project-img">
+            <img src="{% static 'images/project3.jpg' %}" class="img-fluid rounded">
+
+            <span class="status-badge completed">Completed</span>
+          </div>
+
+          <div class="p-3">
+            <h5 class="fw-bold">Digital Literacy Program</h5>
+            <p class="text-muted small">
+              Training centers providing free computer education and digital skills to youth
+            </p>
+
+            <p class="mb-1 small">
+              <i class="fas fa-map-marker-alt text-warning"></i>
+              Multiple Locations
+            </p>
+
+            <p class="small">
+              <i class="fas fa-calendar-alt text-warning"></i>
+              January 2026
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>.project-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* Image wrapper */
+.project-img {
+  position: relative;
+}
+
+/* Status badge */
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.status-badge.completed {
+  background: #28a745;
+}
+
+.status-badge.ongoing {
+  background: #ffc107;
+  color: #000;
+}</style>
+
+
+
+<!-- ================= CITIZEN SERVICES ================= -->
+<section class="py-5" style="background:#f4f7fb;">
+  <div class="container">
+
+    <!-- HEADING -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        {% trans "Citizen Services" %}
+      </h2>
+      <p class="text-muted">
+        {% trans "Quick access to essential government services and support" %}
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- SERVICE 1 -->
+      <div class="col-md-3">
+        <div class="service-card text-center h-100">
+
+          <div class="icon-box">
+            <i class="fas fa-file-alt"></i>
+          </div>
+
+          <h5 class="fw-bold mt-3">Certificate Services</h5>
+
+          <p class="small text-muted">
+            Apply for income, caste, domicile and other certificates online.
+          </p>
+
+          <a href="#" target="_blank" class="btn btn-sm btn-outline-warning mt-2">
+            Access Service →
+          </a>
+
+        </div>
+      </div>
+
+      <!-- SERVICE 2 -->
+      <div class="col-md-3">
+        <div class="service-card text-center h-100">
+
+          <div class="icon-box">
+            <i class="fas fa-comments"></i>
+          </div>
+
+          <h5 class="fw-bold mt-3">Grievance Redressal</h5>
+
+          <p class="small text-muted">
+            Submit complaints and track resolution status easily.
+          </p>
+
+          <a href="#" target="_blank" class="btn btn-sm btn-outline-warning mt-2">
+            Submit Complaint →
+          </a>
+
+        </div>
+      </div>
+
+      <!-- SERVICE 3 -->
+      <div class="col-md-3">
+        <div class="service-card text-center h-100">
+
+          <div class="icon-box">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+
+          <h5 class="fw-bold mt-3">Welfare Schemes</h5>
+
+          <p class="small text-muted">
+            Explore government schemes for farmers, women and youth.
+          </p>
+
+          <a href="#" target="_blank" class="btn btn-sm btn-outline-warning mt-2">
+            View Schemes →
+          </a>
+
+        </div>
+      </div>
+
+      <!-- SERVICE 4 -->
+      <div class="col-md-3">
+        <div class="service-card text-center h-100">
+
+          <div class="icon-box">
+            <i class="fas fa-briefcase"></i>
+          </div>
+
+          <h5 class="fw-bold mt-3">Employment Assistance</h5>
+
+          <p class="small text-muted">
+            Job listings, skill development and employment support.
+          </p>
+
+          <a href="#" target="_blank" class="btn btn-sm btn-outline-warning mt-2">
+            Explore Jobs →
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<style>.service-card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px 15px;
+  transition: 0.4s;
+  border: 1px solid rgba(255,255,255,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient border effect */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 1px;
+  background: linear-gradient(45deg, #f37021, #ffcc00);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+
+/* Hover */
+.service-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* Icon */
+.icon-box {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(45deg, #f37021, #ffb347);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  color: white;
+  font-size: 28px;
+  transition: 0.3s;
+}
+
+/* Icon animation */
+.service-card:hover .icon-box {
+  transform: rotate(10deg) scale(1.1);
+}</style>
+
+
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="py-5" style="background:#ffffff;">
+  <div class="container">
+
+    <!-- HEADING -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        What Constituents Say
+      </h2>
+      <p class="text-muted">
+        Real stories from the people we serve
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- CARD 1 -->
+      <div class="col-md-6 col-lg-3" data-aos="fade-up">
+        <div class="testimonial-card h-100">
+
+          <!-- Quote Icon -->
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+
+          <!-- TEXT -->
+          <p class="testimonial-text">
+            "The infrastructure improvements have transformed our local market area. Business has grown by 38% since the road expansion project completed."
+          </p>
+
+          <!-- USER -->
+          <div class="d-flex align-items-center mt-4">
+
+            <!-- INITIALS -->
+            <div class="avatar">PS</div>
+
+            <div class="ms-3">
+              <h6 class="mb-0 fw-bold">Priya Sharma</h6>
+              <small class="text-muted">Small Business Owner</small>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="testimonial-card h-100">
+
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+
+          <p class="testimonial-text">
+            "Our school received new computer labs and digital learning tools. Students now have access to modern education technology."
+          </p>
+
+          <div class="d-flex align-items-center mt-4">
+            <div class="avatar">RK</div>
+            <div class="ms-3">
+              <h6 class="mb-0 fw-bold">Rajesh Kumar</h6>
+              <small class="text-muted">Teacher</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="testimonial-card h-100">
+
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+
+          <p class="testimonial-text">
+            "The new health center has made quality medical care accessible. Emergency response times have improved significantly."
+          </p>
+
+          <div class="d-flex align-items-center mt-4">
+            <div class="avatar">AP</div>
+            <div class="ms-3">
+              <h6 class="mb-0 fw-bold">Anita Patel</h6>
+              <small class="text-muted">Healthcare Worker</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="testimonial-card h-100">
+
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+
+          <p class="testimonial-text">
+            "Water conservation projects and agricultural training programs have helped increase crop yields and sustainability."
+          </p>
+
+          <div class="d-flex align-items-center mt-4">
+            <div class="avatar">VS</div>
+            <div class="ms-3">
+              <h6 class="mb-0 fw-bold">Vikram Singh</h6>
+              <small class="text-muted">Farmer</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<style>.testimonial-card {
+  background: #f9fafc;
+  padding: 25px;
+  border-radius: 15px;
+  position: relative;
+  transition: 0.3s;
+  height: 100%;
+  border: 1px solid #eee;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* Quote icon */
+.quote-icon {
+  font-size: 28px;
+  color: #f37021;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.testimonial-text {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Avatar initials */
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(45deg, #f37021, #ffb347);
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}</style>
+ <!-- ================= SOCIAL & VIDEO NEWS SECTION ================= --><!-- ================= SOCIAL MEDIA HUB ================= -->
+<section class="py-5" style="background: linear-gradient(135deg, #f4f7fb, #ffffff);">
+  <div class="container">
+
+    <!-- HEADING -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        {% trans "Stay Connected with Sachin Kalyanshetti" %}
+      </h2>
+      <p class="text-muted">
+        {% trans "Follow updates, watch videos, and engage with latest activities" %}
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- FACEBOOK -->
+      <div class="col-md-4">
+        <div class="social-card facebook h-100 text-center">
+
+          <div class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </div>
+
+          <h5 class="fw-bold mt-3">Facebook</h5>
+          <p class="small text-muted">
+            Latest updates, events, and public interactions
+          </p>
+
+          <a href="https://www.facebook.com/" target="_blank" class="btn btn-light mt-2">
+            Follow →
+          </a>
+
+        </div>
+      </div>
+
+      <!-- TWITTER -->
+      <div class="col-md-4">
+        <div class="social-card twitter h-100 text-center">
+
+          <div class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </div>
+
+          <h5 class="fw-bold mt-3">Twitter</h5>
+          <p class="small text-muted">
+            Real-time updates and announcements
+          </p>
+
+          <a href="https://twitter.com" target="_blank" class="btn btn-light mt-2">
+            Follow →
+          </a>
+
+        </div>
+      </div>
+
+      <!-- YOUTUBE -->
+      <div class="col-md-4">
+        <div class="social-card youtube h-100 text-center">
+
+          <div class="social-icon">
+            <i class="fab fa-youtube"></i>
+          </div>
+
+          <h5 class="fw-bold mt-3">YouTube</h5>
+          <p class="small text-muted">
+            Speeches, development work videos & highlights
+          </p>
+
+          <a href="https://youtube.com" target="_blank" class="btn btn-light mt-2">
+            Subscribe →
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<style>.social-card {
+  padding: 40px 20px;
+  border-radius: 20px;
+  color: white;
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Backgrounds */
+.social-card.facebook {
+  background: linear-gradient(135deg, #1877f2, #3b5998);
+}
+
+.social-card.twitter {
+  background: linear-gradient(135deg, #1da1f2, #0d8ddb);
+}
+
+.social-card.youtube {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+
+/* Hover Effect */
+.social-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+/* Icon */
+.social-icon {
+  font-size: 40px;
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.social-card:hover .social-icon {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Button */
+.social-card .btn {
+  border-radius: 30px;
+  font-weight: 600;
+}</style>
+
+
+    <!-- VIDEO NEWS CAROUSEL -->
+<!-- ================= VIDEO NEWS SECTION ================= -->
+<section class="py-5" style="background:#f9fafc;">
+  <div class="container">
+
+    <!-- HEADING -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color:#f37021;">
+        {% trans "Latest Video Updates" %}
+      </h2>
+      <p class="text-muted">
+        {% trans "Watch recent speeches, events and development updates" %}
+      </p>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div id="videoNewsCarousel" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+
+        <!-- VIDEO 1 -->
+        <div class="carousel-item active">
+          <div class="video-card">
+
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/VIDEO_ID_1"
+                      title="Video 1"
+                      allowfullscreen></iframe>
+            </div>
+
+            <div class="video-info">
+              <h6>
+                PM Kisan Samman Nidhi Yojana | पीएम किसान सन्मान निधी
+              </h6>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- VIDEO 2 -->
+        <div class="carousel-item">
+          <div class="video-card">
+
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/VIDEO_ID_2"
+                      title="Video 2"
+                      allowfullscreen></iframe>
+            </div>
+
+            <div class="video-info">
+              <h6>
+                Distribution of 22nd Installment | #DevendraFadnavis
+              </h6>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- VIDEO 3 -->
+        <div class="carousel-item">
+          <div class="video-card">
+
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/VIDEO_ID_3"
+                      title="Video 3"
+                      allowfullscreen></iframe>
+            </div>
+
+            <div class="video-info">
+              <h6>
+                Maharashtra Budget Session Highlights
+              </h6>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CONTROLS -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#videoNewsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon custom-control"></span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#videoNewsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon custom-control"></span>
+      </button>
+
+    </div>
+
+  </div>
+</section>
+<style>.video-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.video-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* Video text */
+.video-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.video-info h6 {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Custom controls */
+.custom-control {
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  padding: 15px;
+}</style>
+<!-- ================= STYLES ================= -->
+<style>
+/* Social card hover effect */
+.social-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.social-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* Buttons hover */
+.social-btn {
+  transition: transform 0.3s;
+}
+.social-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Carousel captions */
+.carousel-caption h6 {
+  font-size: 1rem;
+  text-align: center;
+}
+</style>
+<!-- ================= CALL TO ACTION ================= -->
+<!-- ================= FINAL CALL TO ACTION ================= -->
+<section class="cta-section text-white text-center position-relative">
+
+  <div class="container position-relative">
+    <h2 class="fw-bold display-5 mb-3">
+      {% trans "Together, Let’s Build a Stronger Akkalkot" %}
+    </h2>
+
+    <p class="lead mb-4">
+      {% trans "Join hands in the journey of development and progress." %}
+    </p>
+
+    <a href="{% url 'join' %}" class="btn btn-light btn-lg px-5 fw-semibold cta-btn">
+      {% trans "Join the Campaign" %}
+    </a>
   </div>
 
-  <!-- Intro Text -->
-  <div class="col-md-6">
-    <h1 class="display-5 fw-bold">Hi, I'm <span class="text-primary"><br>Ashish Mahadev Pawar</span></h1>
-    <p class="lead">
-      <strong>Passionate Django Developer | Python Developer | software Developer</strong>
-    </p>
-    <p>
-      Welcome to my portfolio! Here you can explore my skills, projects, 
-      education background, and get in touch with me.
-    </p>
+</section>
+<style>/* CTA Section */
+.cta-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f37021, #ff8c42);
+  position: relative;
+  overflow: hidden;
+}
 
-    <!-- Buttons -->
-   
-  </div>
-  
-</div>
+/* subtle pattern overlay */
+.cta-section::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10%);
+  background-size: 40px 40px;
+  animation: moveBg 20s linear infinite;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(40px,40px); }
+}
+
+/* Button styling */
+.cta-btn {
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+</style>
+
+<!-- ================= COUNTER ANIMATION SCRIPT ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const counters = document.querySelectorAll('.counter');
+
+  counters.forEach(counter => {
+    const update = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText.replace(/,/g, '');
+      const increment = target / 200;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(update, 10);
+      } else {
+        counter.innerText = target.toLocaleString();
+      }
+    };
+    update();
+  });
+});
+</script>
+
 {% endblock %}

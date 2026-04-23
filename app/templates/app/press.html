@@ -1,0 +1,219 @@
+{% extends 'app/base.html' %}
+{% block title %}Scholarship - Sanjay Rathod{% endblock %}
+{% load static %}
+{% block content %}
+
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-6" style="color:#b95a06;" data-aos="fade-down">
+        मातोश्री प्रमिलादेवी दुलीचंद राठोड शिष्यवृत्ती योजना 3.0
+      </h2>
+      <p class="lead text-muted" data-aos="fade-up">
+        बंजारा समाजातील विद्यार्थ्यांसाठी सुवर्णसंधी – उज्ज्वल भविष्याकडे एक पाऊल 🚀
+      </p>
+    </div>
+
+    <div class="row align-items-center g-4">
+      
+      <!-- Left Content -->
+      <div class="col-md-7" data-aos="fade-right">
+        <div class="card shadow-lg border-0 rounded-4 p-4 h-100">
+          <!-- Registration -->
+          <div class="mb-4">
+            <h5 class="fw-bold mb-2 text-primary">📅 नोंदणी दिनांक:</h5>
+            <p>७ ते २० ऑगस्ट २०२५</p>
+          </div>
+
+          <!-- Eligibility -->
+          <div class="mb-4">
+            <h5 class="fw-bold mb-2 text-success">✅ पात्रता:</h5>
+            <p>किमान १२वी उत्तीर्ण</p>
+          </div>
+
+          <!-- Exam Syllabus -->
+          <div class="mb-4">
+            <h5 class="fw-bold mb-3 text-warning">📘 अभ्यासक्रम:</h5>
+            <div class="row g-2">
+              <div class="col-6"><div class="alert alert-light shadow-sm">मराठी व्याकरण – २० प्रश्न</div></div>
+              <div class="col-6"><div class="alert alert-light shadow-sm">इंग्रजी व्याकरण – २० प्रश्न</div></div>
+              <div class="col-6"><div class="alert alert-light shadow-sm">सामान्य अध्ययन – २० प्रश्न</div></div>
+              <div class="col-6"><div class="alert alert-light shadow-sm">गणित – २० प्रश्न</div></div>
+              <div class="col-12"><div class="alert alert-light shadow-sm">बुद्धिमत्ता – २० प्रश्न</div></div>
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <div class="mb-4">
+            <h5 class="fw-bold mb-3 text-danger">🎓 शिष्यवृत्ती स्वरूप:</h5>
+            <ul class="list-unstyled">
+              <li>⭐ स्पर्धा परीक्षेद्वारे विद्यार्थ्यांची निवड केली जाईल</li>
+              <li>⭐ ₹१०,००० शिष्यवृत्ती</li>
+              <li>⭐ ऑनलाईन स्पर्धा परीक्षा क्लासेसची सुविधा</li>
+              <li>⭐ आवश्यक साहित्य (फ्री) दिले जाईल</li>
+            </ul>
+          </div>
+
+          <!-- Apply Button -->
+          <div class="text-center mt-4">
+            <a href="https://forms.gle/StKFZrsVo1WHLPe79" target="_blank" 
+               class="btn btn-lg btn-warning px-5 py-2 fw-bold shadow-lg rounded-pill">
+              🎯 आत्ता अर्ज करा
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="col-md-5 text-center" data-aos="fade-left">
+        <div class="p-3">
+          <img src="{% static 'images/scholarship.jpg' %}" 
+               alt="Scholarship Poster" 
+               class="img-fluid rounded shadow-lg mb-3">
+          <p class="fw-bold">📲 Scan QR code to apply</p>
+          <img src="{% static 'images/scan.png' %}" 
+               alt="QR Code" 
+               class="img-fluid border p-2 rounded shadow" 
+               style="max-width:160px;">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Success Stories Carousel -->
+    <div class="mt-5">
+      <h3 class="text-center fw-bold mb-4" style="color:#b95a06;" data-aos="fade-up">
+        🌟 यशोगाथा (Success Stories)
+      </h3>
+
+      <div id="successCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+          <!-- Story 1 -->
+          <div class="carousel-item active text-center">
+            <img src="{% static 'images/success1.jpg' %}" class="rounded-circle shadow mb-3" 
+                 style="width:120px;height:120px;object-fit:cover;" alt="Student 1">
+            <blockquote class="blockquote">
+              <p>"शिष्यवृत्तीमुळे माझे शिक्षण पूर्ण करता आले. आज मी इंजिनिअरिंग करत आहे."</p>
+            </blockquote>
+            <footer class="blockquote-footer">अजय भोसले</footer>
+          </div>
+
+          <!-- Story 2 -->
+          <div class="carousel-item text-center">
+            <img src="{% static 'images/success2.jpg' %}" class="rounded-circle shadow mb-3" 
+                 style="width:120px;height:120px;object-fit:cover;" alt="Student 2">
+            <blockquote class="blockquote">
+              <p>"ऑनलाईन क्लासेस व मार्गदर्शनामुळे मला UPSC परीक्षेत यश मिळाले."</p>
+            </blockquote>
+            <footer class="blockquote-footer">प्रिया कांबळे</footer>
+          </div>
+
+          <!-- Story 3 -->
+          <div class="carousel-item text-center">
+            <img src="{% static 'images/success3.jpg' %}" class="rounded-circle shadow mb-3" 
+                 style="width:120px;height:120px;object-fit:cover;" alt="Student 3">
+            <blockquote class="blockquote">
+              <p>"१०,००० रुपयांची शिष्यवृत्ती ही माझ्यासाठी खूप मोलाची ठरली."</p>
+            </blockquote>
+            <footer class="blockquote-footer">रोहित नाईक</footer>
+          </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#successCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#successCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="mt-5">
+      <h3 class="text-center fw-bold mb-4" style="color:#b95a06;" data-aos="fade-up">
+        ❓ वारंवार विचारले जाणारे प्रश्न (FAQ)
+      </h3>
+
+      <div class="accordion shadow-lg rounded" id="faqAccordion">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+              शिष्यवृत्ती साठी अर्ज कुठे करता येईल?
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              तुम्ही वर दिलेल्या "🎯 आत्ता अर्ज करा" या बटणावर क्लिक करून Google Form भरू शकता.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+              अर्ज करण्यासाठी कोणती कागदपत्रे आवश्यक आहेत?
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              आधार कार्ड, १२वी मार्कशीट, आणि पासपोर्ट साईज फोटो आवश्यक आहेत.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+              निकाल कधी जाहीर केला जाईल?
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              निकाल १५ सप्टेंबर २०२५ रोजी अधिकृत वेबसाइटवर जाहीर केला जाईल.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+              ऑनलाईन परीक्षा कशी घेतली जाईल?
+            </button>
+          </h2>
+          <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              तुम्हाला ई-मेल आणि एसएमएस द्वारे परीक्षा लिंक आणि लॉगिन माहिती मिळेल.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer with Leader Image -->
+    <div class="text-center mt-5" data-aos="zoom-in">
+      <img src="{% static 'images/Sanjay/rathod.png' %}" 
+           alt="Sanjay Rathod" 
+           class="img-fluid rounded-circle shadow-lg border" 
+           style="max-width:150px;">
+      <h5 class="mt-3 fw-bold">संजय राठोड</h5>
+      <p class="text-muted">मंत्री, महाराष्ट्र राज्य</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Animation Library -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>
+
+{% endblock %}
