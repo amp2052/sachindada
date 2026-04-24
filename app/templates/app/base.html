@@ -188,7 +188,7 @@
         <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
 
         <!-- Language Switch -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
             🌐
           </a>
@@ -196,10 +196,10 @@
             <li><a class="dropdown-item" href="/en/">English</a></li>
             <li><a class="dropdown-item" href="/mr/">मराठी</a></li>
           </ul>
-        </li>
+        </li> -->
 
         <li class="nav-item">
-          <a href="#" class="btn btn-saffron ms-3">{% trans "Join Campaign" %}</a>
+          <a href="{% url 'join' %}" class="btn btn-saffron ms-3">{% trans "Join Campaign" %}</a>
         </li>
 
       </ul>
