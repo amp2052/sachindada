@@ -1,262 +1,662 @@
 {% extends "app/base.html" %}
 {% load static %}
 
-{% block title %}Frequently Asked Questions{% endblock %}
+{% block title %}Frequently Asked Questions - Sachin Kalyanshetti{% endblock %}
 
 {% block content %}
 
 <style>
+
 :root{
   --lotus:#f37021;
   --dark:#1f2a33;
+  --light:#fff8f2;
 }
 
+/* ================= HERO ================= */
+
 .faq-hero{
-  background:linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
-  url("{% static 'images/s8.jpg' %}") center/cover;
+  background:
+    linear-gradient(rgba(31,42,51,.88), rgba(31,42,51,.88)),
+    url("{% static 'images/s8.jpg' %}") center/cover;
   color:white;
-  padding:80px 0;
+  padding:100px 0;
   text-align:center;
 }
 
-.faq-card{
+.faq-hero h1{
+  font-size:48px;
+  font-weight:700;
+}
+
+.faq-hero p{
+  max-width:700px;
+  margin:auto;
+  opacity:0.95;
+}
+
+/* ================= SEARCH ================= */
+
+.search-wrapper{
+  max-width:700px;
+  margin:auto;
+  margin-top:-35px;
+  position:relative;
+  z-index:10;
+}
+
+.search-box{
+  background:white;
+  border-radius:14px;
+  padding:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.search-input{
   border:none;
-  border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  padding:14px 16px;
+  border-radius:10px;
+  background:#f8f9fa;
+}
+
+.search-input:focus{
+  box-shadow:none;
+  border:1px solid #f37021;
+}
+
+/* ================= CATEGORY ================= */
+
+.category-title{
+  font-weight:700;
+  color:var(--dark);
+  margin-bottom:20px;
+  padding-left:14px;
+  border-left:5px solid var(--lotus);
+}
+
+/* ================= FAQ CARD ================= */
+
+.faq-card{
+  background:white;
+  border:none;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* ACCORDION */
+
+.accordion-item{
+  border:none;
+  border-bottom:1px solid #f1f1f1;
 }
 
 .accordion-button{
   font-weight:600;
-}
-
-.search-box{
-  max-width:500px;
-  margin:auto;
-}
-
-.category-title{
-  margin-top:30px;
-  margin-bottom:10px;
-  font-weight:700;
+  padding:20px;
+  background:white;
   color:var(--dark);
-  border-left:5px solid var(--lotus);
-  padding-left:10px;
 }
+
+.accordion-button:not(.collapsed){
+  background:#fff5ee;
+  color:#f37021;
+  box-shadow:none;
+}
+
+.accordion-button:focus{
+  box-shadow:none;
+}
+
+.accordion-body{
+  padding:20px;
+  color:#666;
+  line-height:1.7;
+}
+
+/* ================= QUICK HELP ================= */
+
+.help-card{
+  background:white;
+  border-radius:14px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+  height:100%;
+}
+
+.help-card:hover{
+  transform:translateY(-6px);
+}
+
+.help-card i{
+  font-size:40px;
+  color:#f37021;
+  margin-bottom:15px;
+}
+
+/* ================= CTA ================= */
+
+.cta-section{
+  background:linear-gradient(135deg,#ff9933,#f37021);
+  color:white;
+  border-radius:18px;
+  padding:50px 30px;
+}
+
+.cta-btn{
+  background:white;
+  color:#f37021;
+  border:none;
+  padding:12px 28px;
+  border-radius:8px;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.cta-btn:hover{
+  background:#1f2a33;
+  color:white;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+  .faq-hero{
+    padding:80px 0;
+  }
+
+  .faq-hero h1{
+    font-size:36px;
+  }
+
+}
+
 </style>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
+
 <section class="faq-hero">
   <div class="container">
-    <h1 class="fw-bold">Frequently Asked Questions</h1>
-    <p>Get answers to common questions about services, schemes, and public support</p>
+
+    <h1>Frequently Asked Questions</h1>
+
+    <p class="lead mt-3">
+      Find answers to common questions related to citizen services,
+      government schemes, public grievances, constituency development,
+      and office support.
+    </p>
+
   </div>
 </section>
 
-<div class="container py-5">
+<!-- ================= SEARCH ================= -->
 
-<!-- SEARCH -->
-<div class="search-box mb-4">
-<input type="text" id="faqSearch" class="form-control" placeholder="Search your question...">
-</div>
+<div class="container">
+  <div class="search-wrapper">
 
-<!-- FAQ CARD -->
-<div class="card faq-card p-4">
+    <div class="search-box">
+      <input type="text"
+             id="faqSearch"
+             class="form-control search-input"
+             placeholder="Search your question here...">
+    </div>
 
-<div class="accordion" id="faqAccordion">
-
-<!-- ================= GENERAL ================= -->
-<h5 class="category-title">General Questions</h5>
-
-<div class="accordion-item faq-item">
-<button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
-Who is the MLA of this constituency?
-</button>
-<div id="faq1" class="accordion-collapse collapse show">
-<div class="accordion-body">
-The MLA represents your constituency in the Legislative Assembly and works on development, public issues, and welfare initiatives.
-</div>
-</div>
+  </div>
 </div>
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
-What services does the MLA office provide?
-</button>
-<div id="faq2" class="accordion-collapse collapse">
-<div class="accordion-body">
-The MLA office assists with government schemes, grievance support, local development issues, and citizen services.
-</div>
-</div>
-</div>
+<!-- ================= QUICK HELP ================= -->
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
-Do I need an appointment to visit the office?
-</button>
-<div id="faq3" class="accordion-collapse collapse">
-<div class="accordion-body">
-Appointments are recommended but not mandatory. You can also walk in during office hours.
-</div>
-</div>
-</div>
+<section class="py-5">
+  <div class="container">
 
-<!-- ================= SCHEMES ================= -->
-<h5 class="category-title">Schemes & Services</h5>
+    <div class="row g-4">
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
-How can I apply for government schemes?
-</button>
-<div id="faq4" class="accordion-collapse collapse">
-<div class="accordion-body">
-Click the “Apply” button on any scheme card to visit the official government portal and submit your application.
-</div>
-</div>
-</div>
+      <div class="col-md-4">
+        <div class="help-card">
+          <i class="bi bi-megaphone"></i>
+          <h5 class="fw-bold">Public Grievances</h5>
+          <p class="text-muted">
+            Submit issues related to roads, electricity,
+            sanitation, water supply, and civic concerns.
+          </p>
+        </div>
+      </div>
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">
-How do I check my eligibility?
-</button>
-<div id="faq5" class="accordion-collapse collapse">
-<div class="accordion-body">
-Each scheme card clearly shows eligibility criteria such as income level, category, or occupation.
-</div>
-</div>
-</div>
+      <div class="col-md-4">
+        <div class="help-card">
+          <i class="bi bi-bank"></i>
+          <h5 class="fw-bold">Government Schemes</h5>
+          <p class="text-muted">
+            Get information about welfare schemes,
+            subsidies, scholarships, and citizen benefits.
+          </p>
+        </div>
+      </div>
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">
-What documents are required for schemes?
-</button>
-<div id="faq6" class="accordion-collapse collapse">
-<div class="accordion-body">
-Common documents include Aadhaar card, income certificate, caste certificate, domicile certificate, and bank details.
-</div>
-</div>
-</div>
+      <div class="col-md-4">
+        <div class="help-card">
+          <i class="bi bi-people"></i>
+          <h5 class="fw-bold">Citizen Support</h5>
+          <p class="text-muted">
+            Connect with the constituency office
+            for assistance and guidance.
+          </p>
+        </div>
+      </div>
 
-<!-- ================= GRIEVANCE ================= -->
-<h5 class="category-title">Grievance & Complaints</h5>
+    </div>
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">
-How can I report a public issue?
-</button>
-<div id="faq7" class="accordion-collapse collapse">
-<div class="accordion-body">
-Use the “Public Issues” page to submit your complaint regarding roads, water, electricity, or other local issues.
-</div>
-</div>
-</div>
+  </div>
+</section>
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">
-Can I track my complaint status?
-</button>
-<div id="faq8" class="accordion-collapse collapse">
-<div class="accordion-body">
-Yes, once submitted, your complaint can be tracked through the system (if tracking is enabled).
-</div>
-</div>
-</div>
+<!-- ================= FAQ SECTION ================= -->
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq9">
-How long does issue resolution take?
-</button>
-<div id="faq9" class="accordion-collapse collapse">
-<div class="accordion-body">
-Resolution time depends on the issue type, but urgent issues are prioritized.
-</div>
-</div>
-</div>
+<section class="pb-5">
+  <div class="container">
 
-<!-- ================= EVENTS ================= -->
-<h5 class="category-title">Events & Programs</h5>
+    <!-- ================= GENERAL ================= -->
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq10">
-How can I participate in local events?
-</button>
-<div id="faq10" class="accordion-collapse collapse">
-<div class="accordion-body">
-Check the “News” or “Events” section for upcoming programs and registration details.
-</div>
-</div>
-</div>
+    <h4 class="category-title">
+      General Questions
+    </h4>
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq11">
-Are events free to attend?
-</button>
-<div id="faq11" class="accordion-collapse collapse">
-<div class="accordion-body">
-Most public events are free and open to all citizens.
-</div>
-</div>
-</div>
+    <div class="faq-card mb-5">
 
-<!-- ================= WEBSITE ================= -->
-<h5 class="category-title">Website & Technology</h5>
+      <div class="accordion" id="faqAccordion1">
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq12">
-Is this website secure?
-</button>
-<div id="faq12" class="accordion-collapse collapse">
-<div class="accordion-body">
-Yes, your data is handled securely and used only for public service purposes.
-</div>
-</div>
-</div>
+        <!-- FAQ 1 -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq1">
+              Who is the MLA of this constituency?
+            </button>
+          </h2>
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq13">
-Can I use this website on mobile?
-</button>
-<div id="faq13" class="accordion-collapse collapse">
-<div class="accordion-body">
-Yes, the website is fully responsive and works on mobile, tablet, and desktop devices.
-</div>
-</div>
-</div>
+          <div id="faq1"
+               class="accordion-collapse collapse show"
+               data-bs-parent="#faqAccordion1">
 
-<div class="accordion-item faq-item">
-<button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq14">
-Is the website available in Marathi?
-</button>
-<div id="faq14" class="accordion-collapse collapse">
-<div class="accordion-body">
-Yes, bilingual support (English & Marathi) can be enabled across pages.
-</div>
-</div>
-</div>
+            <div class="accordion-body">
+              The MLA represents the constituency in the
+              Legislative Assembly and works toward
+              development, governance, and public welfare initiatives.
+            </div>
 
-</div>
-</div>
+          </div>
+        </div>
 
-<!-- CONTACT CTA -->
-<div class="text-center mt-5">
-<h5>Still have questions?</h5>
-<p>Contact our office for further assistance</p>
-<a href="{% url 'contact' %}" class="btn btn-warning">Contact Us</a>
-</div>
+        <!-- FAQ 2 -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq2">
+              What services does the constituency office provide?
+            </button>
+          </h2>
 
-</div>
+          <div id="faq2"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion1">
+
+            <div class="accordion-body">
+              The office assists citizens with grievance support,
+              government schemes, public welfare guidance,
+              local development concerns, and constituency services.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq3">
+              What are the office working hours?
+            </button>
+          </h2>
+
+          <div id="faq3"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion1">
+
+            <div class="accordion-body">
+              Office timings are generally Monday to Saturday,
+              10:00 AM to 6:00 PM. Emergency support may be available
+              during urgent situations.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================= SCHEMES ================= -->
+
+    <h4 class="category-title">
+      Government Schemes & Welfare
+    </h4>
+
+    <div class="faq-card mb-5">
+
+      <div class="accordion" id="faqAccordion2">
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq4">
+              How can I apply for government schemes?
+            </button>
+          </h2>
+
+          <div id="faq4"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion2">
+
+            <div class="accordion-body">
+              You can apply online through official government portals
+              or visit the constituency office for guidance regarding
+              eligibility, documents, and application procedures.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq5">
+              What documents are commonly required?
+            </button>
+          </h2>
+
+          <div id="faq5"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion2">
+
+            <div class="accordion-body">
+              Common documents include Aadhaar card,
+              income certificate, domicile certificate,
+              caste certificate, passport-size photos,
+              and bank account details.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq6">
+              How can I check scheme eligibility?
+            </button>
+          </h2>
+
+          <div id="faq6"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion2">
+
+            <div class="accordion-body">
+              Eligibility depends on factors such as income,
+              age, occupation, category, education,
+              and location. Detailed eligibility information
+              is available on each scheme page.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================= PUBLIC ISSUES ================= -->
+
+    <h4 class="category-title">
+      Public Issues & Complaints
+    </h4>
+
+    <div class="faq-card mb-5">
+
+      <div class="accordion" id="faqAccordion3">
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq7">
+              How can I report a local issue?
+            </button>
+          </h2>
+
+          <div id="faq7"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion3">
+
+            <div class="accordion-body">
+              Citizens can submit complaints regarding roads,
+              water supply, drainage, sanitation, electricity,
+              and public infrastructure through the contact form
+              or office helpdesk.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq8">
+              Can I track my grievance status?
+            </button>
+          </h2>
+
+          <div id="faq8"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion3">
+
+            <div class="accordion-body">
+              Yes, grievance tracking can be enabled through
+              the system so citizens can monitor updates
+              and resolution progress.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq9">
+              How long does issue resolution take?
+            </button>
+          </h2>
+
+          <div id="faq9"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion3">
+
+            <div class="accordion-body">
+              Resolution time depends on the issue type,
+              department coordination, and urgency level.
+              Critical public concerns are prioritized immediately.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================= WEBSITE ================= -->
+
+    <h4 class="category-title">
+      Website & Digital Services
+    </h4>
+
+    <div class="faq-card">
+
+      <div class="accordion" id="faqAccordion4">
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq10">
+              Is this website mobile friendly?
+            </button>
+          </h2>
+
+          <div id="faq10"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion4">
+
+            <div class="accordion-body">
+              Yes, the website is fully responsive and works
+              smoothly across mobile, tablet, and desktop devices.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq11">
+              Is citizen data secure on this website?
+            </button>
+          </h2>
+
+          <div id="faq11"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion4">
+
+            <div class="accordion-body">
+              Yes, appropriate security measures are followed
+              to protect citizen information and ensure privacy.
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq12">
+              Is multilingual support available?
+            </button>
+          </h2>
+
+          <div id="faq12"
+               class="accordion-collapse collapse"
+               data-bs-parent="#faqAccordion4">
+
+            <div class="accordion-body">
+              Yes, support for English and Marathi languages
+              can be integrated to improve accessibility
+              for all citizens.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="pb-5">
+  <div class="container">
+
+    <div class="cta-section text-center">
+
+      <h2 class="fw-bold mb-3">
+        Still Have Questions?
+      </h2>
+
+      <p class="mb-4">
+        Contact the constituency office for additional support,
+        guidance, and citizen assistance.
+      </p>
+
+      <a href="{% url 'contact' %}" class="cta-btn">
+        Contact Office
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SCRIPT ================= -->
 
 <script>
+
 const searchInput = document.getElementById("faqSearch");
-const items = document.querySelectorAll(".faq-item");
+const faqItems = document.querySelectorAll(".faq-item");
 
 searchInput.addEventListener("keyup", function(){
-let value = this.value.toLowerCase();
 
-items.forEach(item => {
-let text = item.innerText.toLowerCase();
-item.style.display = text.includes(value) ? "block" : "none";
+  let value = this.value.toLowerCase();
+
+  faqItems.forEach(item => {
+
+    let text = item.innerText.toLowerCase();
+
+    if(text.includes(value)){
+      item.style.display = "block";
+    }
+    else{
+      item.style.display = "none";
+    }
+
+  });
+
 });
-});
+
 </script>
 
 {% endblock %}

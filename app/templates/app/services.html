@@ -7,148 +7,470 @@
 
 <style>
 :root{
-  --lotus:#f37021;
-  --dark:#1f2a33;
+    --lotus:#f37021;
+    --dark:#1f2a33;
+    --light:#f8f9fa;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .services-hero{
-  background:linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
-  url("{% static 'images/s8.jpg' %}") center/cover;
-  color:white;
-  padding:80px 0;
-  text-align:center;
+    background:
+    linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
+    url("{% static 'images/s8.jpg' %}") center/cover;
+    color:white;
+    padding:110px 0;
+    text-align:center;
 }
 
-/* FILTER */
+.services-hero h1{
+    font-weight:800;
+}
+
+.services-hero p{
+    max-width:750px;
+    margin:auto;
+    opacity:0.95;
+}
+
+/* ================= SEARCH ================= */
+.search-wrapper{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    margin-top:-45px;
+    position:relative;
+    z-index:10;
+}
+
+.search-input{
+    border-radius:12px;
+    padding:14px 18px;
+    border:1px solid #ddd;
+}
+
+.search-input:focus{
+    border-color:var(--lotus);
+    box-shadow:0 0 0 0.2rem rgba(243,112,33,0.15);
+}
+
+/* ================= FILTER ================= */
+.filter-section{
+    margin-top:35px;
+}
+
+.filter-btn{
+    border-radius:10px;
+    padding:10px 18px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.filter-btn:hover{
+    transform:translateY(-2px);
+}
+
 .filter-btn.active{
-  background:var(--lotus);
-  color:white;
+    background:linear-gradient(135deg,#ff9933,#f37021);
+    color:white;
+    border-color:transparent;
 }
 
-/* CARD */
+/* ================= HIGHLIGHT ================= */
+.highlight-box{
+    background:#fff8f2;
+    border-left:5px solid var(--lotus);
+    padding:25px;
+    border-radius:14px;
+    margin-bottom:35px;
+}
+
+.highlight-box h4{
+    color:var(--lotus);
+    font-weight:700;
+}
+
+/* ================= CARD ================= */
 .scheme-card{
-  border:none;
-  border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transition:0.3s;
-  height:100%;
+    background:white;
+    border:none;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    transition:0.35s;
+    height:100%;
+    position:relative;
 }
 
 .scheme-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 12px 25px rgba(0,0,0,0.15);
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(0,0,0,0.14);
+}
+
+/* TOP STRIP */
+.scheme-top{
+    height:5px;
+    background:linear-gradient(135deg,#ff9933,#f37021);
+}
+
+/* CARD BODY */
+.scheme-body{
+    padding:24px;
+}
+
+.scheme-category{
+    display:inline-block;
+    background:rgba(243,112,33,0.1);
+    color:var(--lotus);
+    padding:5px 12px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:14px;
 }
 
 .scheme-title{
-  color:var(--lotus);
-  font-weight:700;
+    color:var(--dark);
+    font-weight:800;
+    font-size:20px;
+    margin-bottom:18px;
 }
 
-.scheme-section{
-  font-size:14px;
+/* INFO BOX */
+.info-box{
+    background:#f8f9fa;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:14px;
+}
+
+.info-box strong{
+    display:block;
+    margin-bottom:6px;
+    color:var(--lotus);
+    font-size:14px;
+}
+
+/* BUTTON */
+.apply-btn{
+    width:100%;
+    border:none;
+    background:linear-gradient(135deg,#ff9933,#f37021);
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.apply-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(243,112,33,0.25);
+    color:white;
+}
+
+/* ================= PAGINATION ================= */
+.pagination-box{
+    margin-top:50px;
+    text-align:center;
+}
+
+.pagination-btn{
+    border-radius:10px;
+    padding:10px 18px;
+    font-weight:600;
+}
+
+/* ================= STATS ================= */
+.stats-section{
+    margin-bottom:40px;
+}
+
+.stats-card{
+    background:white;
+    border-radius:16px;
+    padding:24px;
+    text-align:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.stats-card:hover{
+    transform:translateY(-5px);
+}
+
+.stats-card h3{
+    color:var(--lotus);
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+
+    .services-hero{
+        padding:80px 0;
+    }
+
+    .search-wrapper{
+        margin-top:20px;
+    }
+
 }
 </style>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 <section class="services-hero">
-  <div class="container">
-    <h1 class="fw-bold">Citizen Services & Government Schemes</h1>
-    <p>Explore welfare schemes available for citizens of Maharashtra</p>
-  </div>
+    <div class="container">
+
+        <h1 class="display-4 mb-3">
+            Citizen Services & Government Schemes
+        </h1>
+
+        <p class="lead">
+            Explore welfare schemes, public services, certificates,
+            and citizen support programs available for Maharashtra residents.
+        </p>
+
+    </div>
 </section>
 
-<div class="container py-5">
+<!-- ================= SEARCH ================= -->
+<section class="container">
+    <div class="search-wrapper">
 
-<!-- SEARCH -->
-<form method="GET" class="mb-4 text-center">
-  <input type="text" name="q" placeholder="Search schemes..." value="{{ request.GET.q }}" class="form-control w-50 mx-auto">
-</form>
+        <form method="GET">
 
-<!-- FILTER -->
-<div class="text-center mb-4">
-<button class="btn btn-outline-warning m-1 filter-btn active" data-filter="all">All</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="health">Healthcare</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="education">Education</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="employment">Employment</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="housing">Housing</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="agriculture">Agriculture</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="women">Women</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="senior">Senior Citizen</button>
-<button class="btn btn-outline-warning m-1 filter-btn" data-filter="other">Certificates</button>
+            <div class="row g-3 align-items-center">
+
+                <div class="col-md-10">
+                    <input
+                    type="text"
+                    name="q"
+                    value="{{ request.GET.q }}"
+                    class="form-control search-input"
+                    placeholder="Search schemes, certificates, welfare programs...">
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn apply-btn w-100">
+                        Search
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- ================= MAIN ================= -->
+<section class="py-5">
+<div class="container">
+
+    <!-- ================= STATS ================= -->
+    <div class="row g-4 stats-section">
+
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h3>40+</h3>
+                <p class="mb-0">Government Schemes</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h3>8</h3>
+                <p class="mb-0">Service Categories</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h3>100%</h3>
+                <p class="mb-0">Official Apply Links</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="stats-card">
+                <h3>24×7</h3>
+                <p class="mb-0">Citizen Access</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= HIGHLIGHT ================= -->
+    <div class="highlight-box">
+
+        <h4 class="mb-3">
+            ⭐ Popular Citizen Services
+        </h4>
+
+        <p class="mb-0 text-muted">
+            Ayushman Bharat, PM Kisan, MahaDBT Scholarships,
+            Income Certificate, Domicile Certificate,
+            PM Awas Yojana, Crop Insurance,
+            and Maharashtra Government welfare services are among the most accessed schemes.
+        </p>
+
+    </div>
+
+    <!-- ================= FILTER ================= -->
+    <div class="filter-section text-center mb-5">
+
+        <button class="btn btn-outline-warning m-1 filter-btn active" data-filter="all">
+            All
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="health">
+            Healthcare
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="education">
+            Education
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="employment">
+            Employment
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="housing">
+            Housing
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="agriculture">
+            Agriculture
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="women">
+            Women & Child
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="senior">
+            Senior Citizen
+        </button>
+
+        <button class="btn btn-outline-warning m-1 filter-btn" data-filter="other">
+            Certificates
+        </button>
+
+    </div>
+
+    <!-- ================= SCHEMES ================= -->
+    <div class="row g-4">
+
+        {% for scheme in page_obj %}
+
+        <div class="col-lg-4 col-md-6 scheme-item"
+             data-category="{{ scheme.category }}">
+
+            <div class="scheme-card">
+
+                <div class="scheme-top"></div>
+
+                <div class="scheme-body">
+
+                    <span class="scheme-category">
+                        {{ scheme.category|title }}
+                    </span>
+
+                    <h5 class="scheme-title">
+                        {{ scheme.name }}
+                    </h5>
+
+                    <!-- BENEFITS -->
+                    <div class="info-box">
+                        <strong>Benefits</strong>
+                        <span>{{ scheme.benefits }}</span>
+                    </div>
+
+                    <!-- ELIGIBILITY -->
+                    <div class="info-box">
+                        <strong>Eligibility</strong>
+                        <span>{{ scheme.eligibility }}</span>
+                    </div>
+
+                    <!-- APPLY -->
+                    <a href="{{ scheme.link }}"
+                       target="_blank"
+                       class="btn apply-btn mt-2">
+
+                        Apply Now
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- ================= PAGINATION ================= -->
+    <div class="pagination-box">
+
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+           class="btn btn-outline-dark pagination-btn">
+
+           ← Previous
+
+        </a>
+        {% endif %}
+
+        <span class="mx-3 fw-bold">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+           class="btn btn-outline-dark pagination-btn">
+
+           Next →
+
+        </a>
+        {% endif %}
+
+    </div>
+
 </div>
+</section>
 
-<!-- SCHEMES GRID -->
-<div class="row g-4">
-
-{% for scheme in page_obj %}
-<div class="col-md-4 scheme-item" data-category="{{ scheme.category }}">
-<div class="card scheme-card p-3">
-
-<h5 class="scheme-title">{{ scheme.name }}</h5>
-
-<p class="scheme-section">
-<strong>Benefits:</strong> {{ scheme.benefits }}
-</p>
-
-<p>
-<strong>Eligibility:</strong> {{ scheme.eligibility }}
-</p>
-
-<a href="{{ scheme.link }}" target="_blank" class="btn btn-sm btn-warning mt-2">
-Apply Now
-</a>
-
-</div>
-</div>
-{% endfor %}
-
-</div>
-
-<!-- PAGINATION -->
-<div class="text-center mt-5">
-
-{% if page_obj.has_previous %}
-<a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
-class="btn btn-outline-dark">Previous</a>
-{% endif %}
-
-<span class="mx-3">
-Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-</span>
-
-{% if page_obj.has_next %}
-<a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" 
-class="btn btn-outline-dark">Next</a>
-{% endif %}
-
-</div>
-
-</div>
-
-<!-- FILTER SCRIPT -->
+<!-- ================= FILTER SCRIPT ================= -->
 <script>
+
 const filterBtns = document.querySelectorAll(".filter-btn");
 const items = document.querySelectorAll(".scheme-item");
 
 filterBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
 
-    filterBtns.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+    btn.addEventListener("click", () => {
 
-    const filter = btn.getAttribute("data-filter");
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-    items.forEach(item => {
-      if(filter === "all" || item.dataset.category === filter){
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
-      }
+        const filter = btn.getAttribute("data-filter");
+
+        items.forEach(item => {
+
+            if(filter === "all" || item.dataset.category === filter){
+                item.style.display = "block";
+            }else{
+                item.style.display = "none";
+            }
+
+        });
+
     });
 
-  });
 });
+
 </script>
 
 {% endblock %}

@@ -5,90 +5,82 @@
 
 {% block content %}
 
-<!-- ================= HERO ================= -->
-<section class="gallery-hero d-flex align-items-center justify-content-center text-white">
-  <div class="text-center hero-overlay p-5 rounded">
-    <h1 class="fw-bold display-5">Gallery</h1>
-    <p class="lead">A glimpse into the journey, service, and people of Maharashtra</p>
-  </div>
-</section>
-
-<!-- ================= GALLERY ================= -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <div class="row g-4">
-
-      <!-- IMAGE CARD -->
-      {% for i in "12345678" %}
-      <div class="col-md-3 col-sm-6 gallery-item">
-        <div class="card shadow-sm gallery-card">
-
-          <div class="img-wrapper">
-            <img src="{% static 'images/g'|add:i|add:'.jpg' %}" class="card-img-top" alt="Gallery Image">
-
-            <!-- DOWNLOAD BUTTON -->
-            <a href="{% static 'images/g'|add:i|add:'.jpg' %}" download class="download-btn">
-              <i class="bi bi-download"></i>
-            </a>
-          </div>
-
-        </div>
-      </div>
-      {% endfor %}
-
-      <!-- HIDDEN IMAGES -->
-      {% for i in "910111213141516" %}
-      <div class="col-md-3 col-sm-6 gallery-item d-none">
-        <div class="card shadow-sm gallery-card">
-
-          <div class="img-wrapper">
-            <img src="{% static 'images/g'|add:i|add:'.jpg' %}" class="card-img-top" alt="Gallery Image">
-
-            <a href="{% static 'images/g'|add:i|add:'.jpg' %}" download class="download-btn">
-              <i class="bi bi-download"></i>
-            </a>
-          </div>
-
-        </div>
-      </div>
-      {% endfor %}
-
-    </div>
-
-    <!-- VIEW ALL BUTTON -->
-    <div class="text-center mt-5">
-      <button id="viewAllBtn" class="btn view-btn btn-lg">
-        View All Images
-      </button>
-    </div>
-
-  </div>
-</section>
-
-<!-- ================= STYLES ================= -->
 <style>
 :root{
   --lotus:#f37021;
   --dark:#1f2a33;
+  --light:#f8f9fa;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .gallery-hero{
-  background:linear-gradient(rgba(31,42,51,.85),rgba(31,42,51,.85)),
+  background:
+  linear-gradient(rgba(31,42,51,.88),rgba(31,42,51,.88)),
   url("{% static 'images/s8.jpg' %}") center/cover;
-  height:300px;
+  min-height:340px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  position:relative;
 }
 
 .hero-overlay{
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.45);
+  padding:40px;
+  border-radius:18px;
+  backdrop-filter:blur(4px);
+  max-width:850px;
 }
 
-/* IMAGE CARD */
+.hero-overlay h1{
+  font-weight:800;
+}
+
+.hero-overlay p{
+  opacity:0.95;
+}
+
+/* ================= FILTERS ================= */
+.gallery-filter{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.filter-btn{
+  border:1px solid #ddd;
+  background:white;
+  padding:10px 22px;
+  border-radius:30px;
+  margin:5px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+  background:linear-gradient(135deg,#ff9933,#f37021);
+  color:white;
+  border-color:transparent;
+  transform:translateY(-2px);
+}
+
+/* ================= GALLERY CARD ================= */
 .gallery-card{
   border:none;
-  border-radius:12px;
+  border-radius:18px;
   overflow:hidden;
-  transition:0.3s;
+  background:white;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:0.4s;
+  position:relative;
+  height:100%;
+}
+
+.gallery-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 45px rgba(0,0,0,0.16);
 }
 
 .img-wrapper{
@@ -97,31 +89,59 @@
 }
 
 .gallery-card img{
-  height:220px;
-  object-fit:cover;
-  transition:0.3s;
   width:100%;
+  height:260px;
+  object-fit:cover;
+  transition:0.5s;
 }
 
-/* HOVER */
 .gallery-card:hover img{
   transform:scale(1.08);
 }
 
-.gallery-card:hover{
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+/* ================= OVERLAY ================= */
+.gallery-overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:20px;
+  background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
+  color:white;
+  opacity:0;
+  transition:0.4s;
 }
 
-/* DOWNLOAD BUTTON */
-.download-btn{
+.gallery-card:hover .gallery-overlay{
+  opacity:1;
+}
+
+.gallery-overlay h6{
+  font-weight:700;
+  margin-bottom:5px;
+}
+
+.gallery-overlay p{
+  font-size:13px;
+  margin-bottom:0;
+  opacity:0.9;
+}
+
+/* ================= ACTION BUTTONS ================= */
+.gallery-actions{
   position:absolute;
-  top:10px;
-  right:10px;
+  top:12px;
+  right:12px;
+  display:flex;
+  gap:10px;
+}
+
+.action-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
   background:rgba(0,0,0,0.6);
   color:white;
-  width:35px;
-  height:35px;
-  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -129,42 +149,441 @@
   transition:0.3s;
 }
 
-.download-btn:hover{
+.action-btn:hover{
   background:var(--lotus);
   color:white;
+  transform:scale(1.08);
 }
 
-/* BUTTON */
+/* ================= STATS ================= */
+.gallery-stats{
+  background:white;
+  border-radius:18px;
+  padding:30px;
+  margin-bottom:45px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
+}
+
+.stat-box{
+  text-align:center;
+}
+
+.stat-box h3{
+  color:var(--lotus);
+  font-weight:800;
+}
+
+.stat-box p{
+  margin:0;
+  color:#666;
+}
+
+/* ================= BUTTON ================= */
 .view-btn{
   background:linear-gradient(135deg,#ff9933,#f37021);
-  color:white;
   border:none;
-  border-radius:8px;
-  padding:10px 25px;
-  font-weight:600;
+  color:white;
+  padding:13px 32px;
+  border-radius:10px;
+  font-weight:700;
+  transition:0.3s;
 }
 
 .view-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  transform:translateY(-3px);
+  color:white;
+  box-shadow:0 12px 25px rgba(243,112,33,0.3);
 }
 
-/* RESPONSIVE */
+/* ================= LIGHTBOX ================= */
+.gallery-card{
+  cursor:pointer;
+}
+
+/* ================= RESPONSIVE ================= */
 @media(max-width:768px){
+
   .gallery-card img{
-    height:180px;
+    height:220px;
   }
+
+  .hero-overlay{
+    padding:25px;
+  }
+
+  .gallery-hero{
+    min-height:280px;
+  }
+
 }
 </style>
 
+<!-- ================= HERO ================= -->
+<section class="gallery-hero">
+
+  <div class="container">
+
+    <div class="hero-overlay">
+
+      <h1 class="display-5 mb-3">
+        Photo Gallery
+      </h1>
+
+      <p class="lead">
+        Explore memorable moments, development initiatives,
+        public events, social activities, and constituency programs
+        across Maharashtra.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= GALLERY SECTION ================= -->
+<section class="py-5 bg-light">
+
+<div class="container">
+
+  <!-- ================= STATS ================= -->
+  <div class="gallery-stats">
+
+    <div class="row">
+
+      <div class="col-md-3 col-6 mb-3 mb-md-0">
+        <div class="stat-box">
+          <h3>500+</h3>
+          <p>Public Events</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-6 mb-3 mb-md-0">
+        <div class="stat-box">
+          <h3>120+</h3>
+          <p>Development Works</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-6">
+        <div class="stat-box">
+          <h3>50K+</h3>
+          <p>Citizens Reached</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-6">
+        <div class="stat-box">
+          <h3>300+</h3>
+          <p>Community Programs</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= FILTERS ================= -->
+  <div class="gallery-filter">
+
+    <button class="filter-btn active" data-filter="all">
+      All
+    </button>
+
+    <button class="filter-btn" data-filter="events">
+      Events
+    </button>
+
+    <button class="filter-btn" data-filter="development">
+      Development
+    </button>
+
+    <button class="filter-btn" data-filter="meetings">
+      Public Meetings
+    </button>
+
+    <button class="filter-btn" data-filter="social">
+      Social Work
+    </button>
+
+    <button class="filter-btn" data-filter="campaigns">
+      Campaigns
+    </button>
+
+  </div>
+
+  <!-- ================= GALLERY GRID ================= -->
+  <div class="row g-4">
+
+    <!-- IMAGE 1 -->
+    <div class="col-lg-3 col-md-4 col-sm-6 gallery-item"
+         data-category="events">
+
+      <div class="gallery-card">
+
+        <div class="img-wrapper">
+
+          <img src="{% static 'images/g1.jpg' %}"
+               alt="Gallery Image">
+
+          <!-- ACTIONS -->
+          <div class="gallery-actions">
+
+            <a href="{% static 'images/g1.jpg' %}"
+               download
+               class="action-btn">
+
+              <i class="bi bi-download"></i>
+
+            </a>
+
+          </div>
+
+          <!-- OVERLAY -->
+          <div class="gallery-overlay">
+
+            <h6>
+              Public Event
+            </h6>
+
+            <p>
+              Community gathering and citizen interaction program
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- IMAGE 2 -->
+    <div class="col-lg-3 col-md-4 col-sm-6 gallery-item"
+         data-category="development">
+
+      <div class="gallery-card">
+
+        <div class="img-wrapper">
+
+          <img src="{% static 'images/g2.jpg' %}"
+               alt="Gallery Image">
+
+          <div class="gallery-actions">
+
+            <a href="{% static 'images/g2.jpg' %}"
+               download
+               class="action-btn">
+
+              <i class="bi bi-download"></i>
+
+            </a>
+
+          </div>
+
+          <div class="gallery-overlay">
+
+            <h6>
+              Development Work
+            </h6>
+
+            <p>
+              Infrastructure and public welfare initiative
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- IMAGE 3 -->
+    <div class="col-lg-3 col-md-4 col-sm-6 gallery-item"
+         data-category="meetings">
+
+      <div class="gallery-card">
+
+        <div class="img-wrapper">
+
+          <img src="{% static 'images/g3.jpg' %}"
+               alt="Gallery Image">
+
+          <div class="gallery-actions">
+
+            <a href="{% static 'images/g3.jpg' %}"
+               download
+               class="action-btn">
+
+              <i class="bi bi-download"></i>
+
+            </a>
+
+          </div>
+
+          <div class="gallery-overlay">
+
+            <h6>
+              Citizen Meeting
+            </h6>
+
+            <p>
+              Discussion with local residents and representatives
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- IMAGE 4 -->
+    <div class="col-lg-3 col-md-4 col-sm-6 gallery-item"
+         data-category="social">
+
+      <div class="gallery-card">
+
+        <div class="img-wrapper">
+
+          <img src="{% static 'images/g4.jpg' %}"
+               alt="Gallery Image">
+
+          <div class="gallery-actions">
+
+            <a href="{% static 'images/g4.jpg' %}"
+               download
+               class="action-btn">
+
+              <i class="bi bi-download"></i>
+
+            </a>
+
+          </div>
+
+          <div class="gallery-overlay">
+
+            <h6>
+              Social Welfare
+            </h6>
+
+            <p>
+              Public support and welfare distribution activity
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- LOOP REMAINING -->
+    {% for i in "5678910111213141516" %}
+
+    <div class="col-lg-3 col-md-4 col-sm-6 gallery-item d-none"
+         data-category="campaigns">
+
+      <div class="gallery-card">
+
+        <div class="img-wrapper">
+
+          <img src="{% static 'images/g'|add:i|add:'.jpg' %}"
+               alt="Gallery Image">
+
+          <div class="gallery-actions">
+
+            <a href="{% static 'images/g'|add:i|add:'.jpg' %}"
+               download
+               class="action-btn">
+
+              <i class="bi bi-download"></i>
+
+            </a>
+
+          </div>
+
+          <div class="gallery-overlay">
+
+            <h6>
+              Campaign Activity
+            </h6>
+
+            <p>
+              Public outreach and constituency engagement
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+  <!-- ================= BUTTON ================= -->
+  <div class="text-center mt-5">
+
+    <button id="viewAllBtn"
+            class="btn view-btn">
+
+      View All Images
+
+    </button>
+
+  </div>
+
+</div>
+</section>
+
 <!-- ================= SCRIPT ================= -->
 <script>
-document.getElementById('viewAllBtn').addEventListener('click', function() {
+
+/* VIEW ALL */
+document.getElementById('viewAllBtn').addEventListener('click', function(){
+
   document.querySelectorAll('.gallery-item.d-none').forEach(el => {
-    el.classList.remove('d-none');
+      el.classList.remove('d-none');
   });
+
   this.style.display = 'none';
+
 });
+
+/* FILTER */
+const filterBtns = document.querySelectorAll(".filter-btn");
+const galleryItems = document.querySelectorAll(".gallery-item");
+
+filterBtns.forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    filterBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.getAttribute("data-filter");
+
+    galleryItems.forEach(item => {
+
+      if(filter === "all" || item.dataset.category === filter){
+          item.style.display = "block";
+      }else{
+          item.style.display = "none";
+      }
+
+    });
+
+  });
+
+});
+
 </script>
 
 {% endblock %}

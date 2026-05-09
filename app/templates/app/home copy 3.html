@@ -1,0 +1,1196 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Home | Sachin Kalyanshetti{% endblock %}
+
+{% block content %}
+
+<!-- ================= GOOGLE FONT ================= -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ================= AOS ANIMATION ================= -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<!-- ================= GLOBAL STYLES ================= -->
+<style>
+
+/* ================= ROOT ================= */
+:root{
+    --primary:#f37021;
+    --secondary:#1f2a33;
+    --light:#f9fafc;
+    --text:#555;
+}
+
+/* ================= GLOBAL ================= */
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    color:var(--text);
+}
+
+section{
+    position:relative;
+    overflow:hidden;
+}
+
+a{
+    text-decoration:none;
+}
+
+img{
+    transition:0.4s;
+}
+
+img:hover{
+    transform:scale(1.02);
+}
+
+/* ================= HEADINGS ================= */
+.section-title{
+    font-weight:700;
+    color:var(--secondary);
+    position:relative;
+    display:inline-block;
+}
+
+.section-title::after{
+    content:"";
+    width:70px;
+    height:4px;
+    background:var(--primary);
+    position:absolute;
+    bottom:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:10px;
+}
+
+/* ================= BUTTONS ================= */
+.btn-warning{
+    background:var(--primary);
+    border:none;
+    color:#fff;
+    transition:0.3s;
+}
+
+.btn-warning:hover{
+    background:#d85d14;
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(243,112,33,0.4);
+}
+
+/* ================= HERO ================= */
+.hero-slide{
+    position:relative;
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.hero-slide::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to right,
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.5)
+    );
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    color:#fff;
+    text-align:center;
+    animation:fadeInUp 1s ease;
+}
+
+.hero-content h1{
+    font-size:3.5rem;
+    font-weight:700;
+}
+
+.hero-content p{
+    max-width:700px;
+    margin:auto;
+}
+
+@keyframes fadeInUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= FLOAT STATS ================= */
+.float-card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    border-radius:15px;
+    padding:20px;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+/* ================= IMPACT CARD ================= */
+.impact-card{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
+    padding:30px;
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+    height:100%;
+    border:1px solid rgba(255,255,255,0.3);
+}
+
+.impact-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.impact-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:18px;
+    padding:2px;
+    background:linear-gradient(45deg,#f37021,#ffcc00,#138808);
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+}
+
+.icon{
+    font-size:38px;
+    color:var(--primary);
+    margin-bottom:15px;
+    animation:floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}
+}
+
+/* ================= ABOUT ================= */
+.about-img{
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.leader-card{
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(10px);
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ================= GALLERY ================= */
+.gallery-img{
+    overflow:hidden;
+    border-radius:18px;
+}
+
+.gallery-img img{
+    transition:0.5s;
+}
+
+.gallery-img:hover img{
+    transform:scale(1.1);
+}
+
+/* ================= PROJECT CARD ================= */
+.project-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s;
+    box-shadow:0 8px 30px rgba(0,0,0,0.08);
+    height:100%;
+}
+
+.project-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+
+.project-img{
+    position:relative;
+}
+
+.status-badge{
+    position:absolute;
+    top:15px;
+    right:15px;
+    padding:5px 15px;
+    border-radius:30px;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+}
+
+.completed{
+    background:#28a745;
+}
+
+.ongoing{
+    background:#ffc107;
+    color:#000;
+}
+
+/* ================= SERVICES ================= */
+.service-card{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(10px);
+    border-radius:18px;
+    padding:30px 20px;
+    transition:0.4s;
+    text-align:center;
+    height:100%;
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+}
+
+.icon-box{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:#fff;
+    background:linear-gradient(45deg,#f37021,#ffb347);
+}
+
+/* ================= TESTIMONIAL ================= */
+.testimonial-card{
+    background:rgba(255,255,255,0.8);
+    backdrop-filter:blur(10px);
+    border-radius:18px;
+    padding:25px;
+    transition:0.4s;
+    border:1px solid #eee;
+    height:100%;
+}
+
+.testimonial-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+}
+
+.avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:linear-gradient(45deg,#f37021,#ffb347);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+/* ================= SOCIAL ================= */
+.social-card{
+    padding:40px 20px;
+    border-radius:20px;
+    color:#fff;
+    transition:0.4s;
+}
+
+.social-card:hover{
+    transform:translateY(-10px) scale(1.03);
+}
+
+.facebook{
+    background:linear-gradient(135deg,#1877f2,#3b5998);
+}
+
+.twitter{
+    background:linear-gradient(135deg,#1da1f2,#0d8ddb);
+}
+
+.youtube{
+    background:linear-gradient(135deg,#ff0000,#cc0000);
+}
+
+.social-icon{
+    width:85px;
+    height:85px;
+    margin:auto;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+}
+
+/* ================= CTA ================= */
+.cta-section{
+    background:linear-gradient(135deg,#f37021,#ff8c42);
+    padding:100px 0;
+    color:#fff;
+}
+
+.cta-btn{
+    border-radius:50px;
+    transition:0.3s;
+}
+
+.cta-btn:hover{
+    transform:translateY(-5px) scale(1.05);
+}
+
+/* ================= FLOATING SOCIAL ================= */
+.floating-social{
+    position:fixed;
+    top:50%;
+    right:20px;
+    transform:translateY(-50%);
+    z-index:999;
+}
+
+.floating-social a{
+    width:45px;
+    height:45px;
+    margin:10px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#f37021;
+    color:#fff;
+    transition:0.3s;
+}
+
+.floating-social a:hover{
+    transform:scale(1.1);
+}
+
+/* ================= SCROLL BUTTON ================= */
+#scrollTopBtn{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#f37021;
+    color:#fff;
+    z-index:999;
+    display:none;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    background:#1f2a33;
+    color:#fff;
+}
+
+footer a{
+    color:#fff;
+}
+
+footer a:hover{
+    color:#f37021;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+
+    .hero-content h1{
+        font-size:2.3rem;
+    }
+
+    .hero-slide{
+        min-height:75vh;
+    }
+}
+
+</style>
+
+<!-- ================= HERO SECTION ================= -->
+<section>
+
+<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+<div class="carousel-inner">
+
+<!-- SLIDE 1 -->
+<div class="carousel-item active">
+<div class="hero-slide" style="background:url('{% static "images/s8.jpg" %}') center/cover no-repeat;">
+
+<div class="container hero-content">
+
+<h1>
+{% trans "Building a Better Future for Akkalkot" %}
+</h1>
+
+<p class="lead mt-4">
+{% trans "Committed to development, transparency, and empowering every citizen." %}
+</p>
+
+<a href="{% url 'contact' %}" class="btn btn-warning btn-lg px-5 mt-4">
+{% trans "Connect With Us" %}
+</a>
+
+<div class="row mt-5 justify-content-center">
+
+<div class="col-md-3 mb-3">
+<div class="float-card">
+<h3 class="fw-bold text-warning">12+</h3>
+<p>Years of Service</p>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="float-card">
+<h3 class="fw-bold text-warning">150+</h3>
+<p>Projects Completed</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="carousel-item">
+<div class="hero-slide" style="background:url('{% static "images/s3.jpg" %}') center/cover no-repeat;">
+
+<div class="container hero-content">
+
+<h1>
+{% trans "Dedicated Service to the Community" %}
+</h1>
+
+<p class="lead mt-4">
+{% trans "Working for progress, welfare and sustainable development." %}
+</p>
+
+<a href="{% url 'about' %}" class="btn btn-warning btn-lg px-5 mt-4">
+{% trans "Know More" %}
+</a>
+
+</div>
+</div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="carousel-item">
+<div class="hero-slide" style="background:url('{% static "images/s6.jpg" %}') center/cover no-repeat;">
+
+<div class="container hero-content">
+
+<h1>
+{% trans "Infrastructure Development for Progress" %}
+</h1>
+
+<p class="lead mt-4">
+{% trans "Modern roads, schools and healthcare facilities." %}
+</p>
+
+<a href="{% url 'join' %}" class="btn btn-warning btn-lg px-5 mt-4">
+{% trans "Join Campaign" %}
+</a>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+
+</div>
+</section>
+
+<!-- ================= IMPACT ================= -->
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+<h2 class="section-title">
+Development Impact
+</h2>
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+<div class="impact-card text-center">
+<i class="fas fa-road icon"></i>
+<h2 class="counter" data-target="150">0</h2>
+<p>Development Projects</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="impact-card text-center">
+<i class="fas fa-users icon"></i>
+<h2 class="counter" data-target="50000">0</h2>
+<p>Beneficiary Families</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="impact-card text-center">
+<i class="fas fa-school icon"></i>
+<h2 class="counter" data-target="48">0</h2>
+<p>Schools Improved</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="impact-card text-center">
+<i class="fas fa-tint icon"></i>
+<h2 class="counter" data-target="32">0</h2>
+<p>Water Projects</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="py-5">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-md-5 mb-4" data-aos="fade-right">
+
+<img src="{% static 'images/sachin-about.jpg' %}"
+class="img-fluid about-img">
+
+</div>
+
+<div class="col-md-7" data-aos="fade-left">
+
+<h2 class="fw-bold mb-4">
+Meet Your Representative
+</h2>
+
+<p>
+With over 12 years of public service, I am dedicated to representing the voices and interests of our constituency.
+</p>
+
+<p>
+My focus has always been on development, transparent governance and welfare of every citizen.
+</p>
+
+<a href="{% url 'about' %}" class="btn btn-warning mt-3 px-4">
+Read Full Biography
+</a>
+
+</div>
+
+</div>
+
+<div class="row mt-5">
+
+<div class="col-md-10 mx-auto">
+
+<div class="leader-card text-center">
+
+<h4 class="fw-bold mb-3 text-warning">
+Message from the Leader
+</h4>
+
+<p>
+My mission is to ensure inclusive growth, empower youth and bring sustainable development to every corner of Akkalkot.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+<h2 class="section-title">
+Development Gallery
+</h2>
+</div>
+
+<div class="row">
+
+<div class="col-md-4 mb-4">
+<div class="gallery-img">
+<img src="{% static 'images/g1.jpg' %}" class="img-fluid">
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="gallery-img">
+<img src="{% static 'images/g2.jpg' %}" class="img-fluid">
+</div>
+</div>
+
+<div class="col-md-4 mb-4">
+<div class="gallery-img">
+<img src="{% static 'images/g3.jpg' %}" class="img-fluid">
+</div>
+</div>
+
+</div>
+
+<div class="text-center mt-4">
+<a href="{% url 'stock' %}" class="btn btn-warning px-5">
+View Full Gallery
+</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= DEVELOPMENT WORKS ================= -->
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+<h2 class="section-title">
+Development Works
+</h2>
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="project-card">
+
+<div class="project-img">
+<img src="{% static 'images/project1.jpg' %}" class="img-fluid">
+<span class="status-badge completed">Completed</span>
+</div>
+
+<div class="p-4">
+
+<h5 class="fw-bold">
+Highway Expansion Project
+</h5>
+
+<p>
+Four-lane highway connecting major towns and improving transport.
+</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="project-card">
+
+<div class="project-img">
+<img src="{% static 'images/project2.jpg' %}" class="img-fluid">
+<span class="status-badge ongoing">Ongoing</span>
+</div>
+
+<div class="p-4">
+
+<h5 class="fw-bold">
+Community Health Center
+</h5>
+
+<p>
+Modern healthcare facility with emergency services.
+</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="project-card">
+
+<div class="project-img">
+<img src="{% static 'images/project3.jpg' %}" class="img-fluid">
+<span class="status-badge completed">Completed</span>
+</div>
+
+<div class="p-4">
+
+<h5 class="fw-bold">
+Digital Literacy Program
+</h5>
+
+<p>
+Free computer education and digital skills training.
+</p>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+<h2 class="section-title">
+Citizen Services
+</h2>
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+<div class="service-card">
+
+<div class="icon-box">
+<i class="fas fa-file-alt"></i>
+</div>
+
+<h5 class="fw-bold mt-4">
+Certificate Services
+</h5>
+
+<p>
+Apply for important government certificates online.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="service-card">
+
+<div class="icon-box">
+<i class="fas fa-comments"></i>
+</div>
+
+<h5 class="fw-bold mt-4">
+Grievance Redressal
+</h5>
+
+<p>
+Submit complaints and track resolution status.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="service-card">
+
+<div class="icon-box">
+<i class="fas fa-hand-holding-heart"></i>
+</div>
+
+<h5 class="fw-bold mt-4">
+Welfare Schemes
+</h5>
+
+<p>
+Explore schemes for farmers, women and youth.
+</p>
+
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="service-card">
+
+<div class="icon-box">
+<i class="fas fa-briefcase"></i>
+</div>
+
+<h5 class="fw-bold mt-4">
+Employment
+</h5>
+
+<p>
+Jobs, skill development and employment support.
+</p>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TESTIMONIAL ================= -->
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+<h2 class="section-title">
+What Constituents Say
+</h2>
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="testimonial-card">
+
+<div class="mb-3 text-warning">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+</div>
+
+<p>
+Infrastructure improvements transformed our market area.
+</p>
+
+<div class="d-flex align-items-center mt-4">
+
+<div class="avatar">
+PS
+</div>
+
+<div class="ms-3">
+<h6 class="mb-0 fw-bold">
+Priya Sharma
+</h6>
+<small>Business Owner</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= SOCIAL ================= -->
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="section-title">
+Stay Connected
+</h2>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="social-card facebook text-center">
+
+<div class="social-icon">
+<i class="fab fa-facebook-f"></i>
+</div>
+
+<h5 class="mt-4 fw-bold">
+Facebook
+</h5>
+
+<a href="#" class="btn btn-light mt-3">
+Follow
+</a>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="social-card twitter text-center">
+
+<div class="social-icon">
+<i class="fab fa-twitter"></i>
+</div>
+
+<h5 class="mt-4 fw-bold">
+Twitter
+</h5>
+
+<a href="#" class="btn btn-light mt-3">
+Follow
+</a>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="social-card youtube text-center">
+
+<div class="social-icon">
+<i class="fab fa-youtube"></i>
+</div>
+
+<h5 class="mt-4 fw-bold">
+YouTube
+</h5>
+
+<a href="#" class="btn btn-light mt-3">
+Subscribe
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-section text-center">
+
+<div class="container">
+
+<h2 class="display-5 fw-bold">
+Together, Let’s Build a Stronger Akkalkot
+</h2>
+
+<p class="lead mt-3">
+Join hands in the journey of development and progress.
+</p>
+
+<a href="{% url 'join' %}" class="btn btn-light btn-lg px-5 mt-4 cta-btn">
+Join Campaign
+</a>
+
+</div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="py-5">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<h4 class="fw-bold">
+Sachin Kalyanshetti
+</h4>
+
+<p>
+Dedicated to development, transparency and public welfare.
+</p>
+
+</div>
+
+<div class="col-md-4">
+
+<h5 class="fw-bold">
+Quick Links
+</h5>
+
+<ul class="list-unstyled">
+
+<li>
+<a href="/">Home</a>
+</li>
+
+<li>
+<a href="/about/">About</a>
+</li>
+
+<li>
+<a href="/contact/">Contact</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="col-md-4">
+
+<h5 class="fw-bold">
+Office Contact
+</h5>
+
+<p>
+Akkalkot Constituency Office<br>
+Maharashtra, India
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- ================= FLOAT SOCIAL ================= -->
+<div class="floating-social">
+
+<a href="#">
+<i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-twitter"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-youtube"></i>
+</a>
+
+</div>
+
+<!-- ================= SCROLL BUTTON ================= -->
+<button id="scrollTopBtn">
+<i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ================= COUNTER ================= -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const counters=document.querySelectorAll('.counter');
+
+counters.forEach(counter=>{
+
+const update=()=>{
+
+const target=+counter.getAttribute('data-target');
+const count=+counter.innerText;
+
+const increment=target/200;
+
+if(count<target){
+
+counter.innerText=Math.ceil(count+increment);
+
+setTimeout(update,10);
+
+}else{
+
+counter.innerText=target.toLocaleString();
+
+}
+
+};
+
+update();
+
+});
+
+});
+
+</script>
+
+<!-- ================= SCROLL TOP ================= -->
+<script>
+
+const scrollBtn=document.getElementById("scrollTopBtn");
+
+window.onscroll=function(){
+
+if(window.scrollY>300){
+
+scrollBtn.style.display="block";
+
+}else{
+
+scrollBtn.style.display="none";
+
+}
+
+};
+
+scrollBtn.onclick=function(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+</script>
+
+<!-- ================= AOS ================= -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({
+duration:1000,
+once:true
+});
+</script>
+
+{% endblock %}
